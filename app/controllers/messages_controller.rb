@@ -31,9 +31,19 @@ class MessagesController < ApplicationController
   end
 
   def edit
+    @draft_message = Message.find(params[:id])
   end
 
   def update
+    updated_draft_message = Message.find(params[:id])
+    if params[:send_status] == "send"
+      # send message
+      updated_draft_message.status = "sent"
+    else
+      updated_draft_message.update_attributes(params[:message])
+    end
+    updated_draft_message.save!
+    redirect_to message_path(updated_draft_message)
   end
 
   def destroy

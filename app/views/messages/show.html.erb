@@ -19,11 +19,12 @@
 
 
 <br><br>
-<%=link_to "Send Message",  root_path%> |
-<%=link_to "Edit Message",  root_path%> 
-
+<% if @message.status != "sent"%>
+<%=link_to "Send Message",  message_path(@message, send_status: "send"), method: :put%> |
+<%=link_to "Edit Message",  edit_message_path(@message)%> 
+<%end%>
 <br><br>
-<%if @response != 0%>
+<%if @response != 0 && @message.status == "sent"%>
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, type: "existing")%> |
 	<%=link_to "Create New",  new_message_path(origin_id: @message.id, type: "new")%> 
 	

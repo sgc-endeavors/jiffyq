@@ -16,6 +16,18 @@ def submit_a_new_message(new_message)
   fill_in "message_response2", with: new_message.response2
   click_on "Submit"
 end
+
+
+def update_draft_message
+  fill_in "message_title", with: "Bad Ass"
+  fill_in "message_question", with: "Am I more bad ass than Gerard" 
+  fill_in "message_button1", with: "Yes"
+  fill_in "message_button2", with: "No"
+  fill_in "message_address", with: "sethgeyer@yahoo.com"
+  fill_in "message_response1", with: "Suck it nerd... no you're not."
+  fill_in "message_response2", with: "Better luck next time chump!"
+
+end
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
