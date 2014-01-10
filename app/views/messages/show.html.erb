@@ -1,0 +1,30 @@
+
+
+<h1><%="#{@message.title}-o-Meter"%></h1>
+
+<%if @response == 1%>
+<h2><%=@message.response1%></h2>
+<%elsif @response == 2%>
+<h2><%=@message.response2%></h2>
+<%else%>
+<%end%>
+
+<%=image_tag @message.image_url(:thumb).to_s %>
+
+
+<p><%="#{@message.question}"%></p>
+
+<%=link_to @message.button1, message_path(@message, response: 1)%> OR 
+<%=link_to @message.button2, message_path(@message, response: 2)%>
+
+
+<br><br>
+<%=link_to "Send Message",  root_path%> |
+<%=link_to "Edit Message",  root_path%> 
+
+<br><br>
+<%if @response != 0%>
+	<%=link_to "Forward",  new_message_path(origin_id: @message.id, type: "existing")%> |
+	<%=link_to "Create New",  new_message_path(origin_id: @message.id, type: "new")%> 
+	
+	<%end%>

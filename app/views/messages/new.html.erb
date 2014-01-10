@@ -1,0 +1,38 @@
+<h1>
+	<% if @type == "existing" %>
+ 		Forward a Message
+ 	<%else %>
+ 		Create a New Message
+ 	<%end%>
+ </h1>
+
+
+<%=form_for(@new_message, html: { multipart: true }) do |f|%>
+	<%=f.label :title, "What is Being Measured"%>
+	<%=f.text_field :title, placeholder: "Cool"%>- o-Meter <br>
+	
+	<%=f.label :image, "Add Image Here"%>
+	<%=f.file_field :image%> 
+	
+	<%=f.label :question, "Question Your Asking"%>
+	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
+
+	<%=f.label :button1, "Option 1 Button"%>
+	<%=f.text_field :button1, placeholder: "Yes I Am"%> <br>
+
+	<%=f.label :response1, "Response"%>
+	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%> <br>
+
+	<%=f.label :button2, "Option 2 Button"%>
+	<%=f.text_field :button2, placeholder: "No I'm Not"%> <br>
+
+	<%=f.label :response2, "Response"%>
+	<%=f.text_field :response2, placeholder: "Very Smart"%> <br>
+
+	<%=f.label :address, "Address"%>
+	<%=f.text_field :address, placeholder: "grcote@gmail.com"%> <br>
+
+	
+	<%=submit_tag "Submit"%>
+
+<%end%>

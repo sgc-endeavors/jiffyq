@@ -1,0 +1,24 @@
+
+development:
+  adapter: postgresql
+  host: localhost
+  database: ometer_development
+  username: postgres
+  password: postgres
+  encoding: unicode
+
+test:
+  adapter: postgresql
+  host: localhost
+  database: ometer_test
+  username: postgres
+  password: postgres
+  encoding: unicode
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: ometer_production
+  username: postgres
+  password: postgres
+  encoding: unicode
