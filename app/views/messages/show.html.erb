@@ -5,7 +5,7 @@
 <%if @response == 1%>
 <i><h3><%=@message.response1%></h3></i>
 <%elsif @response == 2%>
-<i><h3><%=@message.response2%></h3></i>
+<i><p><b><%=@message.response2%></p></b></i>
 <%else%>
 <%end%>
 
@@ -18,8 +18,9 @@
 <%=link_to @message.button2, message_path(@message, response: 2)%>
 
 
-<br><br>
+<br>
 <% if @message.status != "sent"%>
+<br>
 <%=link_to "Send Message",  message_path(@message, send_status: "send"), method: :put%> |
 <%=link_to "Edit Message",  edit_message_path(@message)%> 
 <%end%>
