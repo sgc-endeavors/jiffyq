@@ -3,20 +3,26 @@
 <h2><%="#{@message.title}-o-Meter"%></h2>
 
 <%if @response == 1%>
-<i><p><%=@message.response1%></p></i>
+<i><p><b><%=@message.response1%></p></i></b>
 <%elsif @response == 2%>
 <i><p><b><%=@message.response2%></p></b></i>
 <%else%>
 <%end%>
 
-<%=image_tag @message.image_url(:thumb).to_s %>
 
+<ul class="thumbnails">
+  <li class="span12">
+    <div class="thumbnail" align="middle">
+      < %=image_tag @message.image.s3_image_key_url(:thumb).to_s %>
 
-<h4><%="#{@message.question}"%></h4>
-
-<%=link_to @message.button1, message_path(@message, response: 1)%> OR 
-<%=link_to @message.button2, message_path(@message, response: 2)%>
-
+      <h4><%="#{@message.question}"%></h4>
+      <p>
+					<a href=<%=message_path(@message, response: 1)%> class = "btn"><%=@message.button1%></a>
+					<a href=<%=message_path(@message, response: 2)%> class = "btn"><%=@message.button2%></a>
+      </p>
+    </div>
+  </li>
+</ul>
 
 <br>
 <% if @message.status != "sent"%>

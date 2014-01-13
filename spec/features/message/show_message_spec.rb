@@ -56,7 +56,7 @@ describe "Message#Show_page" do
 
 		context "message recipient opens message for the first time" do		
 			it "shows the message details" do
-				within("h1") { should have_content("#{sent_message.title}-o-Meter") }
+				should have_content("#{sent_message.title}-o-Meter")
 				should have_content("#{sent_message.question}")
 				should have_link("#{sent_message.button1}")
 				should have_link("#{sent_message.button2}")

@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :message do
     title "Cool"
-    image "/uploads/gerard.jpg"
+    image_id 1
     question "Am I Cooler Than Gerard"
     button1 "Yes I am!"
     button2 "No I'm Not"

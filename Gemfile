@@ -63,3 +63,6 @@ gem "twitter-bootstrap-rails"
 #gem 'sass-rails', '>=3.2' - already reference above
 #gem 'bootstrap-sass', '~> 3.0.3.0'
 
+gem 'fog', "~> 1.3.1"
+gem 'carrierwave_direct'
+gem 'sidekiq'

@@ -1,8 +1,8 @@
 Ometer::Application.routes.draw do
   
-  root :to => "messages#new"
+  root :to => "images#new"
 
-  resources :messages
+  resources :messages, :images
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

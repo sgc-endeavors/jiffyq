@@ -3,19 +3,23 @@ class MessagesController < ApplicationController
   end
 
   def new
+    
     @new_message = Message.new
+    @new_message.image_id = params[:image_id]
+    @new_image = params[:key]
     if params[:origin_id] && params[:type] == "existing"
       @type = params[:type]
       existing_message = Message.find(params[:origin_id].to_i)
       @new_message.title = existing_message.title
-      @new_message.image = existing_message.image
+     ######## @new_message.image = existing_message.image
       @new_message.question = existing_message.question
       @new_message.button1 = existing_message.button1
       @new_message.button2 = existing_message.button2
       @new_message.response1 = existing_message.response1
       @new_message.response2 = existing_message.response2
       @new_message.address = existing_message.address
-
+      @new_message.image_id = existing_message.image_id
+  
     end
   end
 
