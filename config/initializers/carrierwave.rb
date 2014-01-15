@@ -14,7 +14,8 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',       # required
     :aws_access_key_id      => 'AKIAJADPJEW26KLP3UQA',       # required
     :aws_secret_access_key  => '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',       # required
-    :region                 => 'eu-west-1'  # required, defaults to 'us-east-1'
+    :region                 => 'us-west-2'  # required, defaults to 'us-east-1'
+    
   }
   config.fog_directory  = 'o-meter-images'
 

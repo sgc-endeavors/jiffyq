@@ -5,9 +5,9 @@ class Image < ActiveRecord::Base
 
  #after_save :enqueue_image
 
-  def image_name
-  	File.basename(s3_image_loc.path || s3_image_loc.filename) if s3_image_loc
-  end
+  # def image_name
+  # 	File.basename(s3_image_loc.path || s3_image_loc.filename) if s3_image_loc
+  # end
 
   # def enqueue_image
     

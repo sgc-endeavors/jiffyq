@@ -1,15 +1,17 @@
 class ImagesController < ApplicationController
   def index
-    @uploader = Image.new.s3_image_loc
-    @uploader.success_action_redirect = new_image_url
+    @uploader = Image.new#.s3_image_loc
+    #@uploader.success_action_redirect = new_image_url
   end
 
   def new
-    @image = Image.new(key: params[:key])
+   
+  @uploader = Image.new#.s3_image_loc
   end
 
   def create
     new_image = Image.new(params[:image])
+
     if new_image.save
       redirect_to new_message_path(image_id: new_image.id)
     else
