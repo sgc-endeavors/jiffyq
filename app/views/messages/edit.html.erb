@@ -2,14 +2,9 @@
 
 
 <%=form_for(@draft_message, html: { multipart: true }) do |f|%>
-	<%=f.label :title, "What is Being Measured"%>
-	<%=f.text_field :title, placeholder: "Cool"%>- o-Meter <br>
 	
-	< %=f.label :image, "Add Image Here"%>
-	< %=f.file_field :image%> 
-	< %=image_tag @draft_message.image_url(:thumb).to_s %>
 	
-	<%=f.label :question, "Question Your Asking"%>
+	<%=f.label :question, "Question You're Asking"%>
 	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
 
 	<%=f.label :button1, "Option 1 Button"%>
@@ -31,3 +26,17 @@
 	<%=submit_tag "Update"%>
 
 <%end%>
+
+
+
+
+
+
+
+<!--
+
+
+< %=f.label :image, "Add Image Here"%>
+< %=f.file_field :image%> 
+< %=image_tag @draft_message.image_url(:thumb).to_s %>
+-->
