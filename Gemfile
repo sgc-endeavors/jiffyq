@@ -5,8 +5,6 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 
-gem 'carrierwave'
-gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -63,6 +61,15 @@ gem "twitter-bootstrap-rails"
 #gem 'sass-rails', '>=3.2' - already reference above
 #gem 'bootstrap-sass', '~> 3.0.3.0'
 
+gem 'carrierwave'
+gem 'rmagick'
 gem 'fog', "~> 1.3.1"
 gem 'carrierwave_direct'
-gem 'sidekiq'
+#gem 'sidekiq'
+
+
+
+
+#LAUNCH REDIS
+#if you don't want/need launchctl, you can just run:
+#redis-server /usr/local/etc/redis.conf

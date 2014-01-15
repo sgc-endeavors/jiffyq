@@ -1,6 +1,6 @@
 Ometer::Application.routes.draw do
   
-  root :to => "images#new"
+  root :to => "images#index"
 
   resources :messages, :images
 

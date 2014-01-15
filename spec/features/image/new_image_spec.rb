@@ -12,7 +12,7 @@ describe "Image#New_page" do
 			visit new_image_path
 		end
 
-		it { should have_field("image_s3_image_key") }
+		it { should have_field("image_s3_image_loc") }
 		it { should have_button("Submit")}
 		
 		context "user presses submit" do

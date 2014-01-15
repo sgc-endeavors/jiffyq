@@ -10,10 +10,16 @@
 <%end%>
 
 
+<div class="speech-bubble">
+  <div class="arrow bottom right"></div>
+  I am Handsome
+</div><br>
+
+
 <ul class="thumbnails">
   <li class="span12">
     <div class="thumbnail" align="middle">
-      < %=image_tag @message.image.s3_image_key_url(:thumb).to_s %>
+      < %=image_tag @message.image.s3_image_loc_url(:thumb).to_s %>
 
       <h4><%="#{@message.question}"%></h4>
       <p>
