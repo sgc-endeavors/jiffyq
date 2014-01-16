@@ -10,7 +10,6 @@ describe "Message#Show_page" do
 			visit message_path(drafted_message.id)
 		end
 
-
 		it "shows a link to 'send message'" do
 			should have_link("Send Message")
 		end
@@ -56,7 +55,6 @@ describe "Message#Show_page" do
 
 		context "message recipient opens message for the first time" do		
 			it "shows the message details" do
-				should have_content("#{sent_message.title}-o-Meter")
 				should have_content("#{sent_message.question}")
 				should have_link("#{sent_message.button1}")
 				should have_link("#{sent_message.button2}")

@@ -1,7 +1,5 @@
 class ImagesController < ApplicationController
   def index
-    @uploader = Image.new#.s3_image_loc
-    #@uploader.success_action_redirect = new_image_url
   end
 
   def new

@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :message do
-    title "Cool"
     image_id 1
-    question "Am I Cooler Than Gerard"
+    question "Am I Cooler Than Gerard?"
     button1 "Yes I am!"
     button2 "No I'm Not"
     origin_message 1

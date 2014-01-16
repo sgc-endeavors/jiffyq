@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     if params[:origin_id] && params[:type] == "existing"
       @type = params[:type]
       existing_message = Message.find(params[:origin_id].to_i)
-      @new_message.title = existing_message.title
+     
      ######## @new_message.image = existing_message.image
       @new_message.question = existing_message.question
       @new_message.button1 = existing_message.button1

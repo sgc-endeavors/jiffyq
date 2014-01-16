@@ -12,7 +12,7 @@ describe "Message#Edit_page" do
 		end
 
 		it "displays the draft message info in the form" do
-			should have_field("message_title", with: "Cool")
+			should have_field("message_question", with: "Am I Cooler Than Gerard?")
 			#not testing any other fields... one is sufficient
 		end
 
@@ -21,12 +21,12 @@ describe "Message#Edit_page" do
 				update_draft_message
 				click_on "Update"
 				updated_draft_message = Message.find(draft_message.id)
-				updated_draft_message.title.should == "Bad Ass"
+				updated_draft_message.question.should == "Am I more bad ass than Gerard?"
 			end
 
 			it "routes the user back to the show page" do
 				click_on "Update"
-				should have_content("-o-Meter")
+				should have_content("Am I Cooler Than Gerard?")
 				current_path.should == message_path(draft_message)
 			end
 		end

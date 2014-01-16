@@ -13,22 +13,21 @@ describe "Message#New_page" do
 			visit new_message_path(image_id: 1)
 		end
 
-		it { should have_field("message_title") }
-		it { should have_field("message_image_id", with: 1 ) }
+		xit { should have_field("message_image_id", with: 1 ) }
 		it { should have_field("message_question") }
 		it { should have_field("message_button1") }
 		it { should have_field("message_button2") }
 		it { should have_field("message_response1") }
 		it { should have_field("message_response2") }
 		it { should have_field("message_address") }
-		it { should have_button("Submit")}
+		it { should have_button("Preview")}
 		
 
-		context "user presses submit" do
-			before(:each) { submit_a_new_message(new_message) }
+		context "user presses Preview" do
+			before(:each) { preview_a_new_message(new_message) }
 			
-			it "should submit and save the new message" do
-				Message.last.title.should == new_message.title
+			it "should and save the new message as a draft" do
+				Message.last.question.should == new_message.question
 			end
 		end
 	end
@@ -38,7 +37,6 @@ describe "Message#New_page" do
 			visit new_message_path(origin_id: existing_message.id, type: "existing")
 		end
 	
-		it { should have_field("message_title", with: existing_message.title)}
 		#xit { should have_field("message_image", with: existing_message.image)}
 		it { should have_field("message_question", with: existing_message.question)}
 		it { should have_field("message_button1", with: existing_message.button1)}
@@ -54,7 +52,7 @@ describe "Message#New_page" do
 			visit new_message_path(origin_id: existing_message.id, type: "new")
 		end
 	
-		it { should_not have_field("message_title", with: existing_message.title)}
+		
 		#xit { should_not have_field("message_image", with: existing_message.image)}
 		it { should_not have_field("message_question", with: existing_message.question)}
 		it { should_not have_field("message_button1", with: existing_message.button1)}

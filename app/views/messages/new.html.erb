@@ -1,24 +1,22 @@
 <h1>
 	<% if @type == "existing" %>
- 		Forward a Message
+ 		Forward a Question of the Day
  	<%else %>
- 		Create a New Message
+ 		Create a Question of the Day
  	<%end%>
  </h1>
 
 
 <%=form_for(@new_message, html: { multipart: true }) do |f|%>
-	<%=f.label :title, "What is Being Measured"%>
-	<%=f.text_field :title, placeholder: "Cool"%>- o-Meter <br>
 	
-	<%=f.label :image_id, "image_id"%>
-	<%=f.text_field :image_id%><br>
+	
+	<%=f.hidden_field :image_id%><br>
 
 	<%=image_tag Image.find(params[:image_id]).s3_image_loc_url.to_s %>
 	
 
 
-	<%=f.label :question, "Question Your Asking"%>
+	<%=f.label :question, "Question You're Asking"%>
 	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
 
 
@@ -38,6 +36,6 @@
 	<%=f.text_field :address, placeholder: "grcote@gmail.com"%> <br>
 
 	
-	<%=submit_tag "Submit"%>
+	<%=submit_tag "Preview"%>
 
 <%end%>

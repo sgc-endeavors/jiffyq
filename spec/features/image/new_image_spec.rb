@@ -13,11 +13,11 @@ describe "Image#New_page" do
 		end
 
 		it { should have_field("image_s3_image_loc") }
-		it { should have_button("Submit")}
+		it { should have_button("Upload")}
 		
-		context "user presses submit" do
+		context "user presses Upload" do
 			it "routes user to the create new message path" do
-				click_on "Submit"
+				click_on "Upload"
 				current_path.should == new_message_path
 			end
 		end

@@ -5,8 +5,8 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 
-def submit_a_new_message(new_message)
-  fill_in "message_title", with: new_message.title
+def preview_a_new_message(new_message)
+  
   #fill_in "Image", with: new_message.image
   fill_in "message_question", with: new_message.question
   fill_in "message_button1", with: new_message.button1
@@ -14,13 +14,12 @@ def submit_a_new_message(new_message)
   fill_in "message_address", with: new_message.address
   fill_in "message_response1", with: new_message.response1
   fill_in "message_response2", with: new_message.response2
-  click_on "Submit"
+  click_on "Preview"
 end
 
 
 def update_draft_message
-  fill_in "message_title", with: "Bad Ass"
-  fill_in "message_question", with: "Am I more bad ass than Gerard" 
+  fill_in "message_question", with: "Am I more bad ass than Gerard?" 
   fill_in "message_button1", with: "Yes"
   fill_in "message_button2", with: "No"
   fill_in "message_address", with: "sethgeyer@yahoo.com"

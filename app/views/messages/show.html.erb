@@ -36,6 +36,6 @@
 <br>
 <%if @response != 0 && @message.status == "sent"%>
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, type: "existing")%> |
-	<%=link_to "Create New",  new_message_path(origin_id: @message.id, type: "new")%> 
+	<%=link_to "Create New",  root_path(origin_id: @message.id, type: "new")%> 
 	
 	<%end%>
