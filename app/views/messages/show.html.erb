@@ -30,8 +30,11 @@
 <br>
 <% if @message.status != "sent"%>
 <br>
+<a href="sms:?body=<%=@message.question + " Find Out: " + message_url(@message)%>">Sendy as Text</a> |
+<a href="mailto:?subject=<%=@message.question%>&body=Find Out: <%=message_url(@message)%>">Sendy as Email</a> |
+
+
 <%=link_to "Send Message",  message_path(@message, send_status: "send"), method: :put%> |
-<a href="sms:">Sendy Text</a>
 <%=link_to "Send as Text",  message_path(@message, send_status: "send"), method: :put%> |
 <%=link_to "Edit Message",  edit_message_path(@message)%> 
 <%end%>
