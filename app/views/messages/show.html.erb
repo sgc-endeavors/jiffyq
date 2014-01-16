@@ -30,7 +30,7 @@
 <br>
 <% if @message.status != "sent"%>
 <br>
-<a href="sms:?body=<%=@message.question + " Find Out: " + message_url(@message)%>">Sendy as Text</a> |
+<a href="sms:?body=question <%=@message.question%> <%=@message.question + " Find Out: " + message_url(@message)%>">Sendy as Text</a> |
 <a href="mailto:?subject=<%=@message.question%>&body=Find Out: <%=message_url(@message)%>">Sendy as Email</a> |
 
 
