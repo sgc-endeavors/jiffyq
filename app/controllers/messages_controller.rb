@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+  def landing_page
+
+  end
+
   def index
   end
 
@@ -19,7 +23,7 @@ class MessagesController < ApplicationController
       @new_message.response2 = existing_message.response2
       @new_message.address = existing_message.address
       @new_message.image_id = existing_message.image_id
-  
+      
     end
   end
 

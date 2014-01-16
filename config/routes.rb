@@ -4,6 +4,8 @@ Ometer::Application.routes.draw do
 
   resources :messages, :images
 
+  get "/landing_page" => "messages#landing_page", as: "landing_page"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

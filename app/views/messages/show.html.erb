@@ -20,7 +20,7 @@
       <h4><%="#{@message.question}"%></h4>
       <p>
 
-					<a href=<%=message_path(@message, response: 1)%>><%=@message.button1%></a>
+					<a href=<%=message_path(@message, response: 1)%>><%=@message.button1%></a>&nbsp&nbsp | &nbsp&nbsp 
 					<a href=<%=message_path(@message, response: 2)%>><%=@message.button2%></a>
       </p>
     </div>
@@ -36,6 +36,6 @@
 <br>
 <%if @response != 0 && @message.status == "sent"%>
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, type: "existing")%> |
-	<%=link_to "Create New",  root_path(origin_id: @message.id, type: "new")%> 
+	<%=link_to "Create New",  new_image_path(origin_id: @message.id, type: "new")%> 
 	
 	<%end%>

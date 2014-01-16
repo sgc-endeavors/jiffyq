@@ -12,8 +12,7 @@
 	
 	<%=f.hidden_field :image_id%><br>
 
-	<%=image_tag Image.find(params[:image_id]).s3_image_loc_url.to_s %>
-	
+	<%=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
 
 
 	<%=f.label :question, "Question You're Asking"%>

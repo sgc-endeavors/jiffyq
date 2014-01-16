@@ -1,4 +1,4 @@
-<h1>Edit Draft Message </h1>
+<h1>Edit Question of the Day </h1>
 
 
 <%=form_for(@draft_message, html: { multipart: true }) do |f|%>
@@ -6,6 +6,9 @@
 	
 	<%=f.label :question, "Question You're Asking"%>
 	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
+
+	<%=image_tag @draft_message.image.s3_image_loc_url.to_s %>
+
 
 	<%=f.label :button1, "Option 1 Button"%>
 	<%=f.text_field :button1, placeholder: "Yes I Am"%> <br>
