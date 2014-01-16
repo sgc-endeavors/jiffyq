@@ -13,6 +13,7 @@
 	<%=f.hidden_field :image_id%><br>
 
 	<%=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
+	<%= link_to "Destroy", Image.find(@new_message.image_id), :confirm => 'Are you sure?', :method => :delete %>
 
 
 	<%=f.label :question, "Question You're Asking"%>

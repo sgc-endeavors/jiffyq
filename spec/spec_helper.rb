@@ -11,7 +11,6 @@ def preview_a_new_message(new_message)
   fill_in "message_question", with: new_message.question
   fill_in "message_button1", with: new_message.button1
   fill_in "message_button2", with: new_message.button2
-  fill_in "message_address", with: new_message.address
   fill_in "message_response1", with: new_message.response1
   fill_in "message_response2", with: new_message.response2
   click_on "Preview"

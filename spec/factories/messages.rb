@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :message do
-    image_id 1
+    association :image
     question "Am I Cooler Than Gerard?"
     button1 "Yes I am!"
     button2 "No I'm Not"

@@ -10,7 +10,7 @@ describe "Message#New_page" do
 
 	context "visitor visits website to create a new message" do
 		before(:each) do
-			visit new_message_path(image_id: 1)
+			visit new_message_path(image_id: new_message.image.id)
 		end
 
 		xit { should have_field("message_image_id", with: 1 ) }
