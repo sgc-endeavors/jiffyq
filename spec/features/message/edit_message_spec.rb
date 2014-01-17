@@ -6,6 +6,15 @@ describe "Message#Edit_page" do
 	subject{ page }
 
 	
+	context "user types in /edit on an already sent message" do
+		let(:sent_message) {FactoryGirl.create(:message, status: "sent")}
+		before(:each) { visit edit_message_path(sent_message) }
+		it "routes the user to the show page rather than the edit page" do
+			current_path.should == message_path(sent_message)
+		end
+	end
+
+
 	context "author pressed 'Edit Message' " do
 		before(:each) do
 			visit edit_message_path(draft_message)

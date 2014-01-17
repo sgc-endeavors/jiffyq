@@ -6,6 +6,8 @@ Ometer::Application.routes.draw do
 
   get "/landing_page" => "messages#landing_page", as: "landing_page"
 
+  get "/send_options" => "messages#send_options", as: "send_options"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

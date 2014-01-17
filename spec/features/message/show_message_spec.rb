@@ -10,8 +10,8 @@ describe "Message#Show_page" do
 			visit message_path(drafted_message.id)
 		end
 
-		it "shows a link to 'send message'" do
-			should have_link("Send Message")
+		it "shows a link to 'Send'" do
+			should have_link("Send")
 		end
 
 		it "shows a link to 'edit message'" do
@@ -20,31 +20,28 @@ describe "Message#Show_page" do
 		
 		it "does not show 'Forward' or 'Create New' links" do	
 			click_on "#{drafted_message.button1}"
-			should_not have_link("Forward") #####
+			should_not have_link("Forward")
 			should_not have_link("Create New")
 		end
 
 		context "author wants to send the message" do
-			it "routes the author to the edit page w/ send parameters" do
-				click_on "Send Message"
-				current_path.should == message_path(drafted_message)
-			end
-
-			it "changes the status of the message to 'sent'" do
-				click_on "Send Message"
+			before(:each) { click_on "Send" }
+			it "routes the author to the 'send options view'" do
+				current_path.should == send_options_path  ##### We cant test the full path which would be send_options_path(message_id: drafted_message.id).  How do you do this?
+				should have_content("Send Options")
+			end			
+			
+			it "saves the message status to sent" do
 				Message.find(drafted_message.id).status.should == "sent"
 			end
-
-
 		end
 
 		context "author wants to further edit the message" do
+			before(:each) { click_on "Edit Message" }
 			it "routes the author to the edit page" do
-				click_on "Edit Message"
 				current_path.should == edit_message_path(drafted_message)
 			end
 		end
-
 	end
 
 	context "the message was sent by the author" do
@@ -52,7 +49,6 @@ describe "Message#Show_page" do
 		before(:each) do
 			visit message_path(sent_message.id)
 		end
-
 
 		context "message recipient opens message for the first time" do		
 			it "shows the message details" do
@@ -63,7 +59,7 @@ describe "Message#Show_page" do
 				should_not have_content("#{sent_message.response2}")
 				should_not have_link("Forward")
 				should_not have_link("Create New")
-				should_not have_link("Send Message")
+				should_not have_link("Send")
 				should_not have_link("Edit Message")
 			end
 		end

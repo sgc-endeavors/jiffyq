@@ -3,6 +3,13 @@ class MessagesController < ApplicationController
 
   end
 
+  def send_options
+    @message = Message.find(params[:message_id])
+    @message.status = "sent"
+    @message.save! 
+    render :send_options
+  end
+
   def index
   end
 
@@ -10,7 +17,15 @@ class MessagesController < ApplicationController
     
     @new_message = Message.new
     @new_message.image_id = params[:image_id]
+    ######
+    @new_message.question = "Am I cooler than Seth?"
+    @new_message.button1 = "Yes"
+    @new_message.button2 = "No"
     @new_image = params[:key]
+    @new_message.response1 = "You are wrong!"
+    @new_message.response2 = "You are correct!"
+
+
     if params[:origin_id] && params[:type] == "existing"
       @type = params[:type]
       existing_message = Message.find(params[:origin_id].to_i)
@@ -21,7 +36,6 @@ class MessagesController < ApplicationController
       @new_message.button2 = existing_message.button2
       @new_message.response1 = existing_message.response1
       @new_message.response2 = existing_message.response2
-      @new_message.address = existing_message.address
       @new_message.image_id = existing_message.image_id
       
     end
@@ -40,6 +54,9 @@ class MessagesController < ApplicationController
 
   def edit
     @draft_message = Message.find(params[:id])
+    if @draft_message.status == "sent"
+      redirect_to message_path(@draft_message) and return
+    end
   end
 
   def update
