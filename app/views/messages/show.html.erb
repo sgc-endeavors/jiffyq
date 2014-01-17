@@ -28,13 +28,11 @@
 </ul>
 
 <% if @message.status != "sent"%>
-<br>
 
 <%=link_to "Send",  send_options_path(message_id: @message.id)%> |
   
 <%=link_to "Edit Message",  edit_message_path(@message)%> 
 <%end%>
-<br>
 <%if @response != 0 && @message.status == "sent"%>
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, type: "existing")%> |
 	<%=link_to "Create New",  new_image_path(origin_id: @message.id, type: "new")%> 

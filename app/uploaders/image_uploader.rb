@@ -21,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   def resize_the_object
     manipulate! do |source|
-      source.resize_to_fit(250, 250)
+      source.resize_to_fit(250, 200)
 
     end
   end
