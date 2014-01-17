@@ -18,13 +18,9 @@ class MessagesController < ApplicationController
     @new_message = Message.new
     @new_message.image_id = params[:image_id]
     ######
-    @new_message.question = "Am I cooler than Seth?"
     @new_message.button1 = "Yes"
     @new_message.button2 = "No"
     @new_image = params[:key]
-    @new_message.response1 = "You are wrong!"
-    @new_message.response2 = "You are correct!"
-
 
     if params[:origin_id] && params[:type] == "existing"
       @type = params[:type]

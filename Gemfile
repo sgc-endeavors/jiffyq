@@ -67,6 +67,7 @@ gem 'fog'#, "~> 1.3.1"
 #gem 'carrierwave_direct'
 #gem 'sidekiq'
 
+gem 'google-analytics-rails'
 
 
 
