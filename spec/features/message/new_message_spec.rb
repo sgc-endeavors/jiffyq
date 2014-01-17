@@ -19,7 +19,6 @@ describe "Message#New_page" do
 		it { should have_field("message_button2") }
 		it { should have_field("message_response1") }
 		it { should have_field("message_response2") }
-		it { should have_field("message_address") }
 		it { should have_button("Preview")}
 		
 
@@ -43,7 +42,6 @@ describe "Message#New_page" do
 		it { should have_field("message_button2", with: existing_message.button2)}
 		it { should have_field("message_response1", with: existing_message.response1)}
 		it { should have_field("message_response2", with: existing_message.response2)}
-		it { should have_field("message_address", with: existing_message.address)}
 	end
 
 

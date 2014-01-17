@@ -14,11 +14,6 @@ describe "Message#Show_page" do
 			should have_link("Send Message")
 		end
 
-		it "shows a link to 'send text message'" do
-			should have_link("Send as Text")
-		end
-
-
 		it "shows a link to 'edit message'" do
 			should have_link("Edit Message")
 		end
@@ -69,7 +64,6 @@ describe "Message#Show_page" do
 				should_not have_link("Forward")
 				should_not have_link("Create New")
 				should_not have_link("Send Message")
-				should_not have_link("Send as Text")
 				should_not have_link("Edit Message")
 			end
 		end

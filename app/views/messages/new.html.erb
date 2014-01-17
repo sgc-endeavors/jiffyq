@@ -13,7 +13,6 @@
 	<%=f.hidden_field :image_id%><br>
 
 	<%=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
-	<%= link_to "Destroy", Image.find(@new_message.image_id), :confirm => 'Are you sure?', :method => :delete %>
 
 
 	<%=f.label :question, "Question You're Asking"%>
@@ -32,8 +31,6 @@
 	<%=f.label :response2, "Response"%>
 	<%=f.text_field :response2, placeholder: "Very Smart"%> <br>
 
-	<%=f.label :address, "Address"%>
-	<%=f.text_field :address, placeholder: "grcote@gmail.com"%> <br>
 
 	
 	<%=submit_tag "Preview"%>

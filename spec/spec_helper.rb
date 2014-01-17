@@ -21,7 +21,6 @@ def update_draft_message
   fill_in "message_question", with: "Am I more bad ass than Gerard?" 
   fill_in "message_button1", with: "Yes"
   fill_in "message_button2", with: "No"
-  fill_in "message_address", with: "sethgeyer@yahoo.com"
   fill_in "message_response1", with: "Suck it nerd... no you're not."
   fill_in "message_response2", with: "Better luck next time chump!"
 
