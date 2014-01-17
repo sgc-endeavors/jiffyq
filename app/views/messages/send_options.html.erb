@@ -9,8 +9,14 @@
 	<br>
 	<b>Text on iPhone</b>
 		<ol>
-			<li> Copy this: <i><%= @message.question%> Find out at: <%=message_url(@message)%></i></li>
+			<li> Copy this: <i><br></li>
+				<div>
+				<%= text_area_tag "stuff_to_copy", "#{@message.question}  Find out at: #{message_url(@message)}", rows: 3%>
+				</div>
 			<li> Open <a href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">New Message</a> & Paste</li>
+			
+ Copy this: <div><%=@message.question%>  Find out at: <%=message_url(@message)%>
+</div>
 		</ol>
 <br>
 <%= link_to "Return to Message", message_path(@message)%> | <%= link_to "Create New Message", new_image_path%>
