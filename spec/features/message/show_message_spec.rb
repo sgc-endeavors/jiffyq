@@ -7,7 +7,8 @@ describe "Message#Show_page" do
 	context "the message is in being previewed by the author" do
 		let(:drafted_message) { FactoryGirl.create(:message)}
 		before(:each) do
-			visit message_path(drafted_message.id)
+			sign_in_as_existing_user(drafted_message.user)
+			visit message_path(drafted_message.identifier)
 		end
 
 		it "shows a link to 'Send'" do
@@ -47,10 +48,10 @@ describe "Message#Show_page" do
 	context "the message was sent by the author" do
 		let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
 		before(:each) do
-			visit message_path(sent_message.id)
+			visit message_path(sent_message.identifier)
 		end
 
-		context "message recipient opens message for the first time" do		
+		context "message recipient opens message for the first time and is not logged in" do		
 			it "shows the message details" do
 				should have_content("#{sent_message.question}")
 				should have_link("#{sent_message.button1}")
@@ -90,7 +91,7 @@ describe "Message#Show_page" do
 				before(:each) { click_on "Forward" }
 
 				it "routes the user to the message#new view" do
-					current_path.should == new_message_path 
+					current_path.should == new_user_session_path 
 				end
 			end
 		end

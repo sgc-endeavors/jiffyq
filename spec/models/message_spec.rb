@@ -6,4 +6,7 @@ describe Message do
   end
 
   it { should belong_to(:image) }
+
+
+  it { should belong_to(:user) }
 end

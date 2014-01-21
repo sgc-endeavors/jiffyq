@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :message do
     association :image
+    association :user
     question "Am I Cooler Than Gerard?"
     button1 "Yes I am!"
     button2 "No I'm Not"
@@ -10,5 +11,6 @@ FactoryGirl.define do
     address "seth.geyer@gmail.com"
     response1 "You are wrong."
     response2 "You are correct."
+    identifier "abc1234567"
   end
 end

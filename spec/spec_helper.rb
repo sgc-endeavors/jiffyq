@@ -25,6 +25,18 @@ def update_draft_message
   fill_in "message_response2", with: "Better luck next time chump!"
 
 end
+
+def sign_in_as_existing_user(existing_user)
+  visit new_user_session_path
+  fill_in "user_email", with: existing_user.email
+  fill_in "user_password", with: existing_user.password
+  click_button "Sign in"
+end
+
+
+
+
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

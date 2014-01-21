@@ -1,5 +1,7 @@
 Ometer::Application.routes.draw do
   
+  devise_for :users
+
   root :to => "images#new"
 
   resources :messages, :images

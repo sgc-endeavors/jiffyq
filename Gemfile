@@ -51,7 +51,7 @@ gem 'jquery-rails'
   end
 
 #  gem 'cancan'
-#  gem 'devise'
+gem 'devise'
 
 
 gem "therubyracer"

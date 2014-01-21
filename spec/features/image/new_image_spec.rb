@@ -1,14 +1,16 @@
 require "spec_helper"
 
 describe "Image#New_page" do 
+	let(:user) { FactoryGirl.create(:user) }
 	let(:new_image) { FactoryGirl.build(:image)}
 	
 
 	subject{ page }
 
 
-	context "visitor visits website to upload a new image" do
+	context "visitor logs in and visits website to upload a new image" do
 		before(:each) do
+			sign_in_as_existing_user(user)
 			visit new_image_path
 		end
 

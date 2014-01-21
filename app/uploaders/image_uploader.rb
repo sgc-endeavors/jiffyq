@@ -17,12 +17,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :set_content_type
   
   
-  process :resize_the_object
+  process :reformat_the_object
   
-  def resize_the_object
+  def reformat_the_object
     manipulate! do |source|
+      source.auto_orient ####
       source.resize_to_fit(250, 200)
-
     end
   end
 

@@ -12,7 +12,7 @@
 	
 	<%=f.hidden_field :image_id%><br>
 
-	<%=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
+	< %=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
 
 
 	<%=f.label :question, "Question You're Asking"%>
@@ -31,8 +31,9 @@
 	<%=f.label :response2, "Response"%>
 	<%=f.text_field :response2, placeholder: "Very Smart"%> <br>
 
-
-	
+	<%=f.hidden_field :origin_message %>
+	<%=f.hidden_field :user_id%>
+	< %=f.hidden_field :identifier%>
 	<%=submit_tag "Preview"%>
 
 <%end%>

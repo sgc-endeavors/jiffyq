@@ -7,7 +7,7 @@
 	<%=f.label :question, "Question You're Asking"%>
 	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
 
-	<%=image_tag @draft_message.image.s3_image_loc_url.to_s %>
+	< %=image_tag @draft_message.image.s3_image_loc_url.to_s %>
 
 
 	<%=f.label :button1, "Option 1 Button"%>
@@ -21,7 +21,7 @@
 
 	<%=f.label :response2, "Response"%>
 	<%=f.text_field :response2, placeholder: "Very Smart"%> <br>
-
+	< %=f.hidden_field :identifier %>
 
 	
 	<%=submit_tag "Update"%>

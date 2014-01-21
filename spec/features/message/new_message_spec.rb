@@ -8,8 +8,9 @@ describe "Message#New_page" do
 	subject{ page }
 
 
-	context "visitor visits website to create a new message" do
+	context "author visits website to create a new message after first creating an image" do
 		before(:each) do
+			sign_in_as_existing_user(new_message.user)
 			visit new_message_path(image_id: new_message.image.id)
 		end
 
@@ -22,17 +23,53 @@ describe "Message#New_page" do
 		it { should have_button("Preview")}
 		
 
-		context "user presses Preview" do
+		context "author presses Preview" do
 			before(:each) { preview_a_new_message(new_message) }
 			
-			it "should and save the new message as a draft" do
+			it "save the new message as a draft" do
 				Message.last.question.should == new_message.question
 			end
+
+			it "save the new message as a draft" do
+				Message.last.user_id.should == new_message.user.id
+			end
+
+			it "generates and saves the new message's identifier" do
+				Message.last.identifier.length.should == 8
+			end
+
+
 		end
 	end
 
-	context "message recipient clicks to forward an existing message" do
+
+
+	context "author visits new_message_path directly without first creating an image" do
 		before(:each) do
+			sign_in_as_existing_user(new_message.user)
+			visit new_message_path
+		end
+
+		it "routes the author back to the new_image_path" do
+			current_path.should == new_image_path
+		end
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+	context "message recipient logs in and clicks to forward an existing message" do
+		before(:each) do
+			sign_in_as_existing_user(existing_message.user)
 			visit new_message_path(origin_id: existing_message.id, type: "existing")
 		end
 	
