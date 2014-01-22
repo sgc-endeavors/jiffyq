@@ -1,17 +1,21 @@
 <h2>Send Options</h2>
 
-	<b><a href="mailto:?subject=<%=@message.question%>&body=Find Out: <%=message_url(@message)%>">Send as Email</a></b>
+	<a href="mailto:?subject=<%=@message.question%>&body=Find Out: <%=message_url(@message)%>">
+		<button class="btn btn-small btn-success">Send as Email</button>
+	</a>
 	<br>
 	<br>
 
-	<b><a href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">Text on Android</a></b>
+	<a href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">
+			<button class="btn btn-small btn-success">Send Text on Android</button>
+	</a>
 	<br>
 	<br>
-	<b>Text on iPhone</b>
+	<b>Send Text on iPhone</b>
 		<ol>
 			<li> Copy this: <i><br></li>
 				<%= text_area_tag "stuff_to_copy", "#{@message.question}  Find out at: #{message_url(@message)}", rows: 3%>
-			<li> Open <a href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">New Message</a> & Paste</li>
+			<li> <a href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>"><button class="btn btn-small  btn-success">Open iMessage</button></a> and Paste</li>
 		</ol>
 <br>
 <%= link_to "Return to Message", message_path(@message)%> | <%= link_to "Create New Message", new_image_path%>

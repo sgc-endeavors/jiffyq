@@ -32,8 +32,7 @@
 	<%=f.text_field :response2, placeholder: "Very Smart"%> <br>
 
 	<%=f.hidden_field :origin_message %>
-	<%=f.hidden_field :user_id%>
-	< %=f.hidden_field :identifier%>
-	<%=submit_tag "Preview"%>
+	<%=f.hidden_field :user_id%><br>
+	<%=submit_tag "Preview", class: "btn btn-small btn-success"%>
 
 <%end%>
