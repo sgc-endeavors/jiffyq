@@ -21,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   def reformat_the_object
     manipulate! do |source|
-      #source.auto_orient ####
+      source.auto_orient ####
       source.resize_to_fit(250, 200)
     end
   end
