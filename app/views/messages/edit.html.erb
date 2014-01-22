@@ -7,7 +7,7 @@
 	<%=f.label :question, "Question You're Asking"%>
 	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
 
-	< %=image_tag @draft_message.image.s3_image_loc_url.to_s %>
+	<%=image_tag @draft_message.image.s3_image_loc_url.to_s %>
 
 
 	<div class="control-group success">
