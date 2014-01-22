@@ -12,8 +12,8 @@
       <h4><%="#{@message.question}"%></h4>
       <p>
 
-					<a href=<%=message_path(@message, response: 1)%>><%=@message.button1%></a>&nbsp&nbsp | &nbsp&nbsp 
-					<a href=<%=message_path(@message, response: 2)%>><%=@message.button2%></a>
+					<a class="btn btn-small btn-success" href=<%=message_path(@message, response: 1)%>><%=@message.button1%></a>&nbsp
+					<a class="btn btn-small btn-danger" href=<%=message_path(@message, response: 2)%>><%=@message.button2%></a>
       </p>
       <p><b><i>
         <%if @response == 1%>

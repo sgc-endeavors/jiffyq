@@ -1,4 +1,4 @@
-<h1>Edit Question of the Day </h1>
+<h2>Edit Question of the Day </h2>
 
 
 <%=form_for(@draft_message, html: { multipart: true }) do |f|%>
@@ -10,20 +10,23 @@
 	< %=image_tag @draft_message.image.s3_image_loc_url.to_s %>
 
 
-	<%=f.label :button1, "Option 1 Button"%>
-	<%=f.text_field :button1, placeholder: "Yes I Am"%> <br>
+	<div class="control-group success">
+	<%=f.label :button1, "1st Button"%>
+	<%=f.text_field :button1, placeholder: "Yes I Am"%>
 
 	<%=f.label :response1, "Response"%>
-	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%> <br>
-
-	<%=f.label :button2, "Option 2 Button"%>
-	<%=f.text_field :button2, placeholder: "No I'm Not"%> <br>
+	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%>
+	</div>
+	<div class="control-group error">
+	<%=f.label :button2, "2nd Button"%>
+	<%=f.text_field :button2, placeholder: "No I'm Not"%>
 
 	<%=f.label :response2, "Response"%>
-	<%=f.text_field :response2, placeholder: "Very Smart"%> <br><br>
+	<%=f.text_field :response2, placeholder: "Very Smart"%>
+</div>
 
 	
-	<%=submit_tag "Update", class: "btn btn-small btn-success"%>
+	<%=submit_tag "Update", class: "btn btn-small btn-primary"%>
 
 <%end%>
 
