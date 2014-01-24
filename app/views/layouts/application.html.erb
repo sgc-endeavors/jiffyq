@@ -21,19 +21,21 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-th-list"></span>
             </a>
-              <a tabindex=-1 href= <%=landing_page_path(anchor: "qod")%> class="brand"> <img style="width: 30px; height: 30px" src="/ometer_logo.png"> ometer</a>
+              <a tabindex=-1 href= <%=landing_page_path(anchor: "qod")%> class="brand"> <img style="width: 30px" src="/ometer_logo.png"> o-meter</a>
           
             <div class = "nav-collapse collapse">
               <ul class="nav pull-right">
-
+                 
                 <% if user_signed_in? %>
-                  <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
-                  <br>
-                  <li><div><%= link_to "My Questions", messages_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %><div></li> 
-                <% else %>
-                  <li><div><%= link_to "New User?", new_user_registration_path %>&nbsp;&nbsp;or&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Login", new_user_session_path %><div></li>
-                <% end %>
 
+                  <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
+                  <br>
+                  <li><div><%= link_to "My Questions", messages_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li> 
+                <% else %>
+                  <li><div><%= link_to "New User?", new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Login", new_user_session_path %></div></li>
+                <% end %>
+                  <br>
+                <li><div><%= link_to "About", about_path %></div></li>
               </ul>
             </div>
           </div>
@@ -46,7 +48,11 @@
 
 	 	
 		<%= yield %>
-		<br><br>
+		<br>
 	</div>
 </body>
+ <div class="footer">
+    <i><small>  &copy; 2014 SGC Endeavors, Inc.  All rights reserved.</i></small> <br><br><br>
+        </div>
+
 </html>

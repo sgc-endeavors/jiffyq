@@ -1,6 +1,17 @@
 <h3 id="qod">Question of the Day</h3>
-<h4>Select an Image</h4>
+<h4>
+	<div>
+		<button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
+		Select an Image
+	</div>
+</h4>
 
+<div id="demo" class="collapse out">
+	<small>
+		Much like a fine wine, bizarre things you see in everyday life are best enjoyed when shared with friends.  Snap a picture of something worthy.  The picture will be the foundation on which you build your Question of the Day.
+	</small>
+	<hr />
+</div>
 	<%=form_for @uploader, :html => {:multipart => true} do |f|%>  	
 	
 	<%=f.file_field :s3_image_loc%> <br><br><br>
@@ -8,6 +19,8 @@
 	<%=f.submit "Upload", class: "btn btn-small btn-primary" %>
 
 <%end%>
+
+
 
 
 

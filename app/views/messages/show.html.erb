@@ -28,11 +28,43 @@
 
 <% if @message.status != "sent"%>
 
+  <button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
+  <div id="demo" class="collapse out">
+    <small>
+      Send it or Edit it?<br>
+      <ul>
+        <li>This is the view your friends will see once you send it to them.</li>
+        <li>Press the buttons... do they work as intended?</li>
+        <li>Is this pure comic gold?.... or are you leaving a little bit on the table? </li>        
+        <li>Edit it more or send it... your call.</li>
+      <ul>
+    </small>
+    <hr />
+  </div><br>
+
+
 <%=link_to "Send",  send_options_path(message_id: @message.id)%> |
   
 <%=link_to "Edit Message",  edit_message_path(@message, anchor: "qod")%> 
 <%end%>
 <%if @response != 0 && @message.status == "sent"%>
+
+<button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
+  <div id="demo" class="collapse out">
+    <small>
+      You've just receive an o-meter Question of the Day.  What do you want to do?<br>
+      <ul>
+        <li>Go back to work and later curse your friend for wasting your time.</li>
+        <li>Forward it to others?... press the Forward Button.</li>
+        <li>Perhaps you were the topic of the Question of the Day... and didn't like it.  Craft a reply using the same image.</li>        
+        <li>Create a New One from scratch?... you guessed it...  Press Create New.</li>
+      <ul>
+    </small>
+    <hr />
+  </div><br>
+
+
+
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, forward: true, anchor: "qod")%> |
 	<%=link_to "Create a Reply",  new_message_path(origin_id: @message.id, anchor: "qod")%> |
   <%=link_to "Create New",  new_image_path%> 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140121211320) do
+ActiveRecord::Schema.define(:version => 20140124213518) do
 
   create_table "images", :force => true do |t|
     t.string   "s3_image_loc"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20140121211320) do
     t.string   "button1"
     t.string   "button2"
     t.integer  "origin_message"
-    t.string   "address"
     t.string   "response1"
     t.string   "response2"
     t.datetime "created_at",     :null => false
