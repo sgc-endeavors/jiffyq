@@ -13,7 +13,7 @@ def preview_a_new_message(new_message)
   fill_in "message_button2", with: new_message.button2
   fill_in "message_response1", with: new_message.response1
   fill_in "message_response2", with: new_message.response2
-  click_on "Preview"
+  click_on "Save & Preview"
 end
 
 
@@ -30,7 +30,7 @@ def sign_in_as_existing_user(existing_user)
   visit new_user_session_path
   fill_in "user_email", with: existing_user.email
   fill_in "user_password", with: existing_user.password
-  click_button "Sign in"
+  click_button "Login"
 end
 
 

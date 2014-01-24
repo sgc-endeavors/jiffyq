@@ -46,52 +46,61 @@ describe "Message#Show_page" do
 	end
 
 	context "the message was sent by the author" do
-		let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
-		before(:each) do
-			visit message_path(sent_message.identifier)
-		end
-
-		context "message recipient opens message for the first time and is not logged in" do		
-			it "shows the message details" do
-				should have_content("#{sent_message.question}")
-				should have_link("#{sent_message.button1}")
-				should have_link("#{sent_message.button2}")
-				should_not have_content("#{sent_message.response1}")
-				should_not have_content("#{sent_message.response2}")
-				should_not have_link("Forward")
-				should_not have_link("Create New")
-				should_not have_link("Send")
-				should_not have_link("Edit Message")
+			let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
+			before(:each) do
+				visit message_path(sent_message.identifier)
 			end
-		end
 
-		context "message recipient clicks on 'button1' " do		
-			it "shows response1" do
-				click_on "#{sent_message.button1}"
-				should have_content("#{sent_message.response1}")
-				should have_link("Forward")
-				should have_link("Create New")
+			context "message recipient opens message and is not logged in" do		
+				it "shows the message details" do
+					should have_content("#{sent_message.question}")
+					should have_link("#{sent_message.button1}")
+					should have_link("#{sent_message.button2}")
+					should_not have_content("#{sent_message.response1}")
+					should_not have_content("#{sent_message.response2}")
+					should_not have_link("Forward")
+					should_not have_link("Create New")
+					should_not have_link("Send")
+					should_not have_link("Edit Message")
+				end
 
+			context "message recipient clicks on 'button1' " do		
+				it "shows response1" do
+					click_on "#{sent_message.button1}"
+					should have_content("#{sent_message.response1}")
+					should have_link("Forward")
+					should have_link("Create New")
+					should have_link("Create a Reply")
+
+				end
 			end
-		end
 
-		context "message recipient clicks on 'button2' " do		
-			it "shows response2" do
-				click_on "#{sent_message.button2}"
-				should have_content("#{sent_message.response2}")
-				should have_link("Forward")
-				should have_link("Create New")
+			context "message recipient clicks on 'button2' " do		
+				it "shows response2" do
+					click_on "#{sent_message.button2}"
+					should have_content("#{sent_message.response2}")
+					should have_link("Forward")
+					should have_link("Create New")
+				end
 			end
-		end
 
-		context "message recipient pressed button1 or button2" do
-			before(:each) { click_on "#{sent_message.button1}" }
+			context "message recipient pressed button1 or button2" do
+				before(:each) { click_on "#{sent_message.button1}" }
 
-			context "message recipient preessed 'Forward'" do
-				before(:each) { click_on "Forward" }
+				context "message recipient pressed 'Forward'" do
+					before(:each) { click_on "Forward" }
 
-				it "routes the user to the message#new view" do
-					current_path.should == new_user_session_path 
+					it "routes the user to the session#new view" do
+						current_path.should == new_user_session_path 
+					end
+				end
+
+				context "message recipient pressed 'Create a Reply'" do
+					before(:each) { click_on "Create a Reply" }
+
+					it "routes the user to the session#new view" do
+						current_path.should == new_user_session_path 
+					end
 				end
 			end
 		end

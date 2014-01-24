@@ -1,0 +1,8 @@
+<h2>My Questions</h2>
+
+<% @messages.each do |message|%>
+
+	<%= link_to message.question, message_path(message) %> (<%= Message.where(origin_message: message.id).count%>)
+	<br>
+
+<% end %>

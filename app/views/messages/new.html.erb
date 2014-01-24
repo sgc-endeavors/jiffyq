@@ -1,41 +1,14 @@
 <h2>
-	<% if @type == "existing" %>
+	<% if @type == "forward" %>
  		Forward It
+ 	<% elsif @type == "reply" %>
+ 		Create a Reply
  	<%else %>
  		Question of the Day
  	<%end%>
  </h2>
 
 
-<%=form_for(@new_message, html: { multipart: true }) do |f|%>
-	
-	
-	<%=f.hidden_field :image_id%><br>
+	<% @message = @new_message %>	
 
-	<%=image_tag Image.find(@new_message.image_id).s3_image_loc_url.to_s %>
-
-
-	<%=f.label :question, "Question You're Asking"%>
-	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
-
-	
-	<div class="control-group success">
-	<%=f.label :button1, "1st Button"%>
-	<%=f.text_field :button1, placeholder: "Yes I Am"%>
-	
-	<%=f.label :response1, "Response"%>
-	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%>
-	</div>
-	<div class="control-group error">
-	<%=f.label :button2, "2nd Button"%>
-	<%=f.text_field :button2, placeholder: "No I'm Not"%>
-	
-	<%=f.label :response2, "Response"%>
-	<%=f.text_field :response2, placeholder: "Very Smart"%>
-	</div>
-
-	<%=f.hidden_field :origin_message %>
-	<%=f.hidden_field :user_id%>
-	<%=submit_tag "Preview", class: "btn btn-small btn-primary"%>
-
-<%end%>
+	<%= render "form" %>

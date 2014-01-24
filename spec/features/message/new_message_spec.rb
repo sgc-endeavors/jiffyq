@@ -14,31 +14,30 @@ describe "Message#New_page" do
 			visit new_message_path(image_id: new_message.image.id)
 		end
 
-		xit { should have_field("message_image_id", with: 1 ) }
+		#xit { should have_field("message_image_id", with: 1 ) }
 		it { should have_field("message_question") }
 		it { should have_field("message_button1") }
 		it { should have_field("message_button2") }
 		it { should have_field("message_response1") }
 		it { should have_field("message_response2") }
-		it { should have_button("Preview")}
+		it { should have_button("Save & Preview")}
 		
 
-		context "author presses Preview" do
+		context "author presses 'Save & Preview'" do
 			before(:each) { preview_a_new_message(new_message) }
 			
-			it "save the new message as a draft" do
+			it "save the new message as a draft with the following attributes" do
 				Message.last.question.should == new_message.question
-			end
-
-			it "save the new message as a draft" do
 				Message.last.user_id.should == new_message.user.id
 			end
 
-			it "generates and saves the new message's identifier" do
+			it "creates a unique string identifier in place of id for use in URL" do
 				Message.last.identifier.length.should == 8
 			end
 
-
+			it "assigns message id as origin_message id to identify a new string of messages" do
+				Message.last.origin_message.should == Message.last.id
+			end
 		end
 	end
 
@@ -79,24 +78,17 @@ describe "Message#New_page" do
 		it { should have_field("message_button2", with: existing_message.button2)}
 		it { should have_field("message_response1", with: existing_message.response1)}
 		it { should have_field("message_response2", with: existing_message.response2)}
-	end
 
+		context "author clicks 'Save & Preview'" do
+			before(:each) { click_on "Save & Preview" }
 
-	context "message recipient clicks to Create a new message" do
-		before(:each) do
-			visit new_message_path(origin_id: existing_message.id, type: "new")
+			it "saves forwarded message origin_message value in the new message's origin_message field" do
+				Message.last.origin_message.should == existing_message.origin_message
+			end
 		end
-	
-		
-		#xit { should_not have_field("message_image", with: existing_message.image)}
-		it { should_not have_field("message_question", with: existing_message.question)}
-		it { should_not have_field("message_button1", with: existing_message.button1)}
-		it { should_not have_field("message_button2", with: existing_message.button2)}
-		it { should_not have_field("message_response1", with: existing_message.response1)}
-		it { should_not have_field("message_response2", with: existing_message.response2)}
-		it { should_not have_field("message_address", with: existing_message.address)}
 	end
-
-
-
 end
+
+
+
+

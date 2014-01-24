@@ -37,20 +37,20 @@ describe "Message#Edit_page" do
 		end
 
 		it "displays the draft message info in the form" do
-			should have_field("message_question", with: "Am I Cooler Than Gerard?")
+			should have_field("message_button1", with: "Yes I am!")
 			#not testing any other fields... one is sufficient
 		end
 
-		context "author updates message and presses 'Update'" do
+		context "author updates message and presses 'Save & Preview'" do
 			it "successfully saves the updates" do
 				update_draft_message
-				click_on "Update"
+				click_on "Save & Preview"
 				updated_draft_message = Message.find(draft_message.id)
 				updated_draft_message.question.should == "Am I more bad ass than Gerard?"
 			end
 
 			it "routes the user back to the show page" do
-				click_on "Update"
+				click_on "Save & Preview"
 				should have_content("Am I Cooler Than Gerard?")
 				current_path.should == message_path(draft_message)
 			end

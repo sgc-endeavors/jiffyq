@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
   end
 
   def index
+    @messages = Message.where(user_id: current_user.id)
   end
 
   def new
@@ -25,15 +26,14 @@ class MessagesController < ApplicationController
       @new_message.image_id = params[:image_id]
       @new_message.button1 = "Yes"
       @new_message.button2 = "No"
-      @new_message.origin_message = params[:origin_message_id]
       @new_message.user_id = current_user.id
-     
+      #@new_message.origin_message = Message.last.origin_message.to_i + 1  
       #@new_image = params[:key]
       if params[:origin_id] 
-        @type = "existing"
+        params[:forward] ? @type = "forward" : @type = "reply"
         existing_message = Message.find(params[:origin_id].to_i)
         @new_message.question = existing_message.question
-        @new_message.origin_message = existing_message.id
+        @new_message.origin_message = existing_message.origin_message
         @new_message.button1 = existing_message.button1
         @new_message.button2 = existing_message.button2
         @new_message.response1 = existing_message.response1
@@ -51,6 +51,12 @@ class MessagesController < ApplicationController
     new_message = Message.new(params[:message])
     new_message.identifier = SecureRandom.hex(4)
     new_message.save!
+
+    if new_message.origin_message == nil
+      new_message.origin_message = new_message.id
+    end
+    new_message.save!
+    
     redirect_to message_path(new_message)
   end
 

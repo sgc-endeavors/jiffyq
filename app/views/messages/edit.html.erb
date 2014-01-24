@@ -1,45 +1,5 @@
 <h2>Edit Question of the Day </h2>
 
+	<% @message = @draft_message %>	
 
-<%=form_for(@draft_message, html: { multipart: true }) do |f|%>
-	
-	
-	<%=f.label :question, "Question You're Asking"%>
-	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
-
-	<%=image_tag @draft_message.image.s3_image_loc_url.to_s %>
-
-
-	<div class="control-group success">
-	<%=f.label :button1, "1st Button"%>
-	<%=f.text_field :button1, placeholder: "Yes I Am"%>
-
-	<%=f.label :response1, "Response"%>
-	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%>
-	</div>
-	<div class="control-group error">
-	<%=f.label :button2, "2nd Button"%>
-	<%=f.text_field :button2, placeholder: "No I'm Not"%>
-
-	<%=f.label :response2, "Response"%>
-	<%=f.text_field :response2, placeholder: "Very Smart"%>
-</div>
-
-	
-	<%=submit_tag "Update", class: "btn btn-small btn-primary"%>
-
-<%end%>
-
-
-
-
-
-
-
-<!--
-
-
-< %=f.label :image, "Add Image Here"%>
-< %=f.file_field :image%> 
-< %=image_tag @draft_message.image_url(:thumb).to_s %>
--->
+	<%= render "form" %>
