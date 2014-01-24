@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   def landing_page
 
+    render :landing_page, anchor: "qod"
   end
 
   def send_options
@@ -44,7 +45,7 @@ class MessagesController < ApplicationController
     else
       redirect_to new_image_path and return  
     end
-      render :new    
+      render :new, anchor: "qod"    
   end
 
   def create
@@ -57,7 +58,7 @@ class MessagesController < ApplicationController
     end
     new_message.save!
     
-    redirect_to message_path(new_message)
+    redirect_to message_path(new_message, anchor: "view-line")
   end
 
   def show
@@ -68,7 +69,7 @@ class MessagesController < ApplicationController
   def edit
     @draft_message = Message.where(identifier: params[:id]).first
     if @draft_message.status == "sent"
-      redirect_to message_path(@draft_message) and return
+      redirect_to message_path(@draft_message, anchor: "qod") and return
     end
   end
 
@@ -81,7 +82,7 @@ class MessagesController < ApplicationController
       updated_draft_message.update_attributes(params[:message])
     end
     updated_draft_message.save!
-    redirect_to message_path(updated_draft_message)
+    redirect_to message_path(updated_draft_message, anchor: "qod")
   end
 
   def destroy

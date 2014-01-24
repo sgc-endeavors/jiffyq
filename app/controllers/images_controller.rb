@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
     new_image = Image.new(params[:image])
 
     if new_image.save
-      redirect_to new_message_path(image_id: new_image.id)
+      redirect_to new_message_path(image_id: new_image.id, anchor: "qod")
     else
       render :index
     end

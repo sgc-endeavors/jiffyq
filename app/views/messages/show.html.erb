@@ -6,13 +6,14 @@
 <ul class="thumbnails">
   <li class="span12">
     <div class="thumbnail" align="middle">
-      <h3>Question of the Day</h3>
+      <h3 id="qod" >Question of the Day</h3>
       <%=image_tag @message.image.s3_image_loc_url.to_s %>
 
       <h4><%="#{@message.question}"%></h4>
       
-			<div style= "line-height: 2.3" >		<a class="btn btn-small btn-success" href=<%=message_path(@message, response: 1)%>><%=@message.button1%></a>
-					<a class="btn btn-small btn-danger" href=<%=message_path(@message, response: 2)%>><%=@message.button2%></a>
+			<div style= "line-height: 2.3" >		
+        <a class="btn btn-small btn-success" href=<%=message_path(@message, response: 1, anchor: "qod")%>><%=@message.button1%></a>
+				<a class="btn btn-small btn-danger"  href=<%=message_path(@message, response: 2, anchor: "qod")%>><%=@message.button2%></a>
       </div>
       <p><b><i>
         <%if @response == 1%>
@@ -29,13 +30,14 @@
 
 <%=link_to "Send",  send_options_path(message_id: @message.id)%> |
   
-<%=link_to "Edit Message",  edit_message_path(@message)%> 
+<%=link_to "Edit Message",  edit_message_path(@message, anchor: "qod")%> 
 <%end%>
 <%if @response != 0 && @message.status == "sent"%>
-	<%=link_to "Forward",  new_message_path(origin_id: @message.id, forward: true)%> |
-	<%=link_to "Create a Reply",  new_message_path(origin_id: @message.id)%> |
+	<%=link_to "Forward",  new_message_path(origin_id: @message.id, forward: true, anchor: "qod")%> |
+	<%=link_to "Create a Reply",  new_message_path(origin_id: @message.id, anchor: "qod")%> |
   <%=link_to "Create New",  new_image_path%> 
 	
 	<%end%>
 
   
+

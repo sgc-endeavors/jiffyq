@@ -13,10 +13,9 @@ describe "Message#Send_Options_page" do
 		end
 
 		it { should have_link("Send as Email") }
-		it { should have_link("Text on Android") }
-		it { should have_content("Text on iPhone") }
+		it { should have_content("Send as Text") }
 		it { should have_link("Return to Message") }
-		it { should have_link("Create New Message")}
+		it { should have_link("Create New")}
 
 		context "user wants to send as an email" do
 			before(:each) { click_on "Send as Email" }
@@ -35,7 +34,7 @@ describe "Message#Send_Options_page" do
 			end
 
 			context "user wants to create a new message" do
-				before(:each) { click_on "Create New Message" }
+				before(:each) { click_on "Create New" }
 
 				it "takes user to the images new view" do
 					current_path.should == new_image_path

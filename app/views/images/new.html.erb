@@ -1,4 +1,4 @@
-<h2>Question of the Day</h2>
+<h3 id="qod">Question of the Day</h3>
 <h4>Select an Image</h4>
 
 	<%=form_for @uploader, :html => {:multipart => true} do |f|%>  	
@@ -8,3 +8,6 @@
 	<%=f.submit "Upload", class: "btn btn-small btn-primary" %>
 
 <%end%>
+
+
+
