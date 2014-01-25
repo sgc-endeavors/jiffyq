@@ -24,5 +24,32 @@ describe "Message#Index_page" do
 		it "shows the activity spawned by the message" do
 			should have_content("Am I Cooler Than Gerard? (2)")
 		end
+
+		it "has a delete button" do
+			should have_link("X")
+		end
+
+		context "user presses the delete button" do
+			before(:each) { click_on "X" }
+		
+			context "the message being deleted had an original image" do
+				it "removes the related image from amazon s3" do
+					
+				end
+			end
+
+
+
+			it "removes the message" do
+				current_path.should == messages_path
+				should_not have_content("Am I Cooler Than Gerard? (2)")
+			end
+
+			
+
+		end
+
+
+
 	end
 end

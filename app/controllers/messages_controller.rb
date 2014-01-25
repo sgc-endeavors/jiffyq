@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
 
   def landing_page
 
-    render :landing_page, anchor: "qod"
+    render :landing_page
   end
 
   def send_options
@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @messages = Message.where(user_id: current_user.id)
+    @messages = Message.where(user_id: current_user.id).order("id desc")
   end
 
   def new
@@ -89,6 +89,9 @@ class MessagesController < ApplicationController
     redirect_to message_path(updated_draft_message, anchor: "qod")
   end
 
-  def destroy
+  def destroy #(post/delete)
+    Message.where(identifier: params[:id]).first.destroy
+    redirect_to messages_path and return
+
   end
 end

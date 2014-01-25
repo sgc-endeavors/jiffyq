@@ -30,5 +30,15 @@ class ImagesController < ApplicationController
   end
 
   def destroy
+   
+  deleted_message = Message.where(identifier: params[:identifier]).first
+
+  if deleted_message.id == deleted_message.origin_message
+    if Image.where(id: params[:id]).first != nil
+      Image.find(params[:id]).destroy
+    end 
+  end
+  deleted_message.destroy
+  redirect_to messages_path and return
   end
 end

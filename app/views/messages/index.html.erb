@@ -2,7 +2,12 @@
 
 <% @messages.each do |message|%>
 
-	<%= link_to message.question, message_path(message) %> (<%= Message.where(origin_message: message.id).count%>)
-	<br>
+	<p>
+	<%= link_to message.question, message_path(message) %> (<%= Message.where(origin_message: message.id).count%>) 
+	<%=link_to "X", image_path(message.image_id, identifier: message.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+	</p>
+
 
 <% end %>
+
+
