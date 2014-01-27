@@ -5,11 +5,11 @@
 	<br>
 	<b>Send as Text</b>
 		<ol>
-			<li> Copy this: <i><br></li>
+			<li> Copy this:<br></li>
 				<%= text_area_tag "stuff_to_copy", "#{@message.question}  Answer at: #{message_url(@message)}", rows: 3%>
 			<li> <a class="btn btn-small  btn-primary"href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">Open TextMessenger</a> and Paste</li>
 		</ol>
 <br>
-<%= link_to "Return to Message", message_path(@message, anchor: "qod")%> | <%= link_to "Create New", new_image_path%>
+<%= link_to "Return to Question", message_path(@message, anchor: "qod")%> | <%= link_to "Create Another", new_image_path%>
 
 

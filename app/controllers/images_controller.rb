@@ -4,6 +4,9 @@ class ImagesController < ApplicationController
 
 
   def index
+  @images = Image.all
+  authorize! :manage, Image  
+  render :index
   end
 
   def new 
@@ -18,15 +21,6 @@ class ImagesController < ApplicationController
     else
       render :index
     end
-  end
-
-  def show
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy

@@ -43,9 +43,9 @@
   </div><br>
 
 
-<%=link_to "Send",  send_options_path(message_id: @message.id)%> |
+<%=link_to "Save & Send",  send_options_path(message_id: @message.id)%> &nbsp;&nbsp;|&nbsp;&nbsp;
   
-<%=link_to "Edit Message",  edit_message_path(@message, anchor: "qod")%> 
+<%=link_to "Edit",  edit_message_path(@message, anchor: "qod")%> 
 <%end%>
 <%if @response != 0 && @message.status == "sent"%>
 
@@ -67,7 +67,7 @@
 
 	<%=link_to "Forward",  new_message_path(origin_id: @message.id, forward: true, anchor: "qod")%> |
 	<%=link_to "Create a Reply",  new_message_path(origin_id: @message.id, anchor: "qod")%> |
-  <%=link_to "Create New",  new_image_path%> 
+  <%=link_to "Create Your Own",  new_image_path%> 
 	
 	<%end%>
 

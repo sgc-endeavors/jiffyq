@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140124213518) do
+ActiveRecord::Schema.define(:version => 20140127162059) do
 
   create_table "images", :force => true do |t|
     t.string   "s3_image_loc"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20140124213518) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.boolean  "is_admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

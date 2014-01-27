@@ -6,14 +6,12 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 
 def preview_a_new_message(new_message)
-  
-  #fill_in "Image", with: new_message.image
   fill_in "message_question", with: new_message.question
   fill_in "message_button1", with: new_message.button1
   fill_in "message_button2", with: new_message.button2
   fill_in "message_response1", with: new_message.response1
   fill_in "message_response2", with: new_message.response2
-  click_on "Save & Preview"
+  click_on "Preview"
 end
 
 

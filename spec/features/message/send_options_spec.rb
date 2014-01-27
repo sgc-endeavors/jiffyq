@@ -14,19 +14,18 @@ describe "Message#Send_Options_page" do
 
 		it { should have_link("Send as Email") }
 		it { should have_content("Send as Text") }
-		it { should have_link("Return to Message") }
-		it { should have_link("Create New")}
+		it { should have_link("Return to Question") }
+		it { should have_link("Create Another")}
 
 		context "user wants to send as an email" do
 			before(:each) { click_on "Send as Email" }
-			# it should open a users email application
+			# it should open a user's email application
 		end
-
 
 		context "user wants to leave this page" do
 					
 			context "user wants to view the message just sent" do
-				before(:each) { click_on "Return to Message" }
+				before(:each) { click_on "Return to Question" }
 
 				it "takes user back to message show page" do
 					current_path.should == message_path(message_to_send.identifier)
@@ -34,7 +33,7 @@ describe "Message#Send_Options_page" do
 			end
 
 			context "user wants to create a new message" do
-				before(:each) { click_on "Create New" }
+				before(:each) { click_on "Create Another" }
 
 				it "takes user to the images new view" do
 					current_path.should == new_image_path
@@ -52,5 +51,4 @@ describe "Message#Send_Options_page" do
 			current_path.should == new_user_session_path
 		end
 	end
-
 end

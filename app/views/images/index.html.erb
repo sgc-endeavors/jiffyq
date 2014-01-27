@@ -1,0 +1,12 @@
+<h3>List of Images</h3>
+
+<p>
+<%@images.each do |image|%>
+<%=image.id %>
+<%=image.s3_image_loc%> |
+<%=image.created_at.strftime("%m/%d/%Y")%>  
+<%=link_to "X", image_path(image), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+
+<br>
+</p>
+<%end%>

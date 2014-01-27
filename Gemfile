@@ -68,7 +68,7 @@ gem 'fog'#, "~> 1.3.1"
 #gem 'sidekiq'
 
 gem 'google-analytics-rails'
-
+gem 'cancan'
 
 
 #LAUNCH REDIS

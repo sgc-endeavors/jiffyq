@@ -4,30 +4,30 @@ describe "Message#Show_page" do
 	
 	subject{ page }
 
-	context "the message is in being previewed by the author" do
+	context "the message is being previewed by the author" do
 		let(:drafted_message) { FactoryGirl.create(:message)}
 		before(:each) do
 			sign_in_as_existing_user(drafted_message.user)
 			visit message_path(drafted_message.identifier)
 		end
 
-		it "shows a link to 'Send'" do
-			should have_link("Send")
+		it "shows a link to 'Save & Send'" do
+			should have_link("Save & Send")
 		end
 
-		it "shows a link to 'edit message'" do
-			should have_link("Edit Message")
+		it "shows a link to 'Edit'" do
+			should have_link("Edit")
 		end
 		
-		it "does not show 'Forward' or 'Create New' links" do	
+		it "does NOT show 'Forward' or 'Create New' links" do	
 			click_on "#{drafted_message.button1}"
 			should_not have_link("Forward")
-			should_not have_link("Create New")
+			should_not have_link("Create Your Own")
 		end
 
-		context "author wants to send the message" do
-			before(:each) { click_on "Send" }
-			it "routes the author to the 'send options view'" do
+		context "user wants to send the message they've authored" do
+			before(:each) { click_on "Save & Send" }
+			it "routes the user to the 'send options' view'" do
 				current_path.should == send_options_path  ##### We cant test the full path which would be send_options_path(message_id: drafted_message.id).  How do you do this?
 				should have_content("Send Options")
 			end			
@@ -38,7 +38,7 @@ describe "Message#Show_page" do
 		end
 
 		context "author wants to further edit the message" do
-			before(:each) { click_on "Edit Message" }
+			before(:each) { click_on "Edit" }
 			it "routes the author to the edit page" do
 				current_path.should == edit_message_path(drafted_message)
 			end
@@ -59,9 +59,9 @@ describe "Message#Show_page" do
 					should_not have_content("#{sent_message.response1}")
 					should_not have_content("#{sent_message.response2}")
 					should_not have_link("Forward")
-					should_not have_link("Create New")
-					should_not have_link("Send")
-					should_not have_link("Edit Message")
+					should_not have_link("Create Your Own")
+					should_not have_link("Save & Send")
+					should_not have_link("Edit")
 				end
 
 			context "message recipient clicks on 'button1' " do		
@@ -69,9 +69,8 @@ describe "Message#Show_page" do
 					click_on "#{sent_message.button1}"
 					should have_content("#{sent_message.response1}")
 					should have_link("Forward")
-					should have_link("Create New")
+					should have_link("Create Your Own")
 					should have_link("Create a Reply")
-
 				end
 			end
 
@@ -80,7 +79,8 @@ describe "Message#Show_page" do
 					click_on "#{sent_message.button2}"
 					should have_content("#{sent_message.response2}")
 					should have_link("Forward")
-					should have_link("Create New")
+					should have_link("Create Your Own")
+					should have_link("Create a Reply")
 				end
 			end
 
@@ -90,7 +90,7 @@ describe "Message#Show_page" do
 				context "message recipient pressed 'Forward'" do
 					before(:each) { click_on "Forward" }
 
-					it "routes the user to the session#new view" do
+					it "routes the user to the 'login' page" do
 						current_path.should == new_user_session_path 
 					end
 				end
@@ -98,7 +98,7 @@ describe "Message#Show_page" do
 				context "message recipient pressed 'Create a Reply'" do
 					before(:each) { click_on "Create a Reply" }
 
-					it "routes the user to the session#new view" do
+					it "routes the user to the 'login' page" do
 						current_path.should == new_user_session_path 
 					end
 				end
