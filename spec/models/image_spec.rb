@@ -5,7 +5,9 @@ describe Image do
   	FactoryGirl.create(:image).should be_valid
   end
 
-  it { should have_many(:messages)}
+  it { should have_many(:messages) }
+
+  it { should belong_to(:user) }
 
 end
 

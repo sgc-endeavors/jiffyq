@@ -20,6 +20,12 @@ describe "Image#New_page" do
 				click_on "Upload"
 				current_path.should == new_message_path
 			end
+
+			it "saves the current user's id as the 'user_id' for the image" do
+				click_on "Upload"
+				Image.last.user_id.should == user.id
+			end
+
 		end
 	end
 end

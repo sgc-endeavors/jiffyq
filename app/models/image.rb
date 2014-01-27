@@ -2,6 +2,7 @@ class Image < ActiveRecord::Base
   attr_accessible :s3_image_loc, :image_processed
   mount_uploader :s3_image_loc, ImageUploader
   has_many :messages
+  belongs_to :user
 
  #after_save :enqueue_image
 

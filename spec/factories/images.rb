@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :image do
     s3_image_loc "MyString"
+		association :user
   end
 end

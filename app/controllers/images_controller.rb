@@ -15,6 +15,7 @@ class ImagesController < ApplicationController
 
   def create
     new_image = Image.new(params[:image])
+    new_image.user_id = current_user.id
 
     if new_image.save
       redirect_to new_message_path(image_id: new_image.id, anchor: "qod")
