@@ -9,7 +9,8 @@ describe "Message#Index_page" do
 		before(:each) do
 			sign_in_as_existing_user(user)
 			@original_message = FactoryGirl.create(:message, user_id: user.id)
-			2.times { FactoryGirl.create(:message, origin_message: @original_message.id) }
+			@new_message1 = FactoryGirl.create(:message, origin_message: @original_message.id)
+			@new_message2 = FactoryGirl.create(:message, origin_message: @original_message.id) 
 			visit messages_path
 		end
 
@@ -21,8 +22,32 @@ describe "Message#Index_page" do
 			should have_link("Am I Cooler Than Gerard?")
 		end
 
-		it "shows the activity spawned by the question" do
-			should have_content("Am I Cooler Than Gerard? (2)")
+		context "no one has visited the 'show' page for this message" do
+			it "shows page view count equal to 0" do
+			should have_content("Am I Cooler Than Gerard? (0)")
+			end
+		end
+
+		context "the author visits the 'show' page for his own message" do
+			before(:each) do
+				visit message_path(@original_message)
+				visit messages_path
+			end
+
+			it "shows page view count equal to 0" do
+				should have_content("Am I Cooler Than Gerard? (0)")
+			end
+		end
+
+
+		context "the author visits the 'show' page for someone else's message" do
+			before(:each) do
+				visit message_path(@new_message1)
+			end
+
+			it "adds +1 to the page views for that message" do
+				Message.find(@new_message1.id).page_views.should == 1
+			end
 		end
 
 		it "has a delete button" do

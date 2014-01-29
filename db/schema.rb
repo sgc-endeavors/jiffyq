@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140127212807) do
+ActiveRecord::Schema.define(:version => 20140129203951) do
 
   create_table "images", :force => true do |t|
     t.string   "s3_image_loc"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20140127212807) do
     t.integer  "image_id"
     t.integer  "user_id"
     t.string   "identifier"
+    t.integer  "page_views"
   end
 
   create_table "users", :force => true do |t|

@@ -55,6 +55,7 @@ class MessagesController < ApplicationController
   def create
     new_message = Message.new(params[:message])
     new_message.identifier = SecureRandom.hex(4)
+    new_message.page_views = 0
     new_message.save!
 
     if new_message.origin_message == nil
@@ -68,6 +69,10 @@ class MessagesController < ApplicationController
   def show
     @response = params[:response].to_i
     @message = Message.where(identifier: params[:id]).first
+    if @message.user != current_user && @response == 0
+      @message.page_views = @message.page_views.to_i + 1
+      @message.save!
+    end
   end
 
   def edit
@@ -78,7 +83,9 @@ class MessagesController < ApplicationController
   end
 
   def update
-    updated_draft_message = Message.where(identifier: params[:id]).first
+    user = User.find(current_user.id)
+    updated_draft_message = user.messages.find_by_identifier(params[:id])
+    #updated_draft_message = Message.where(identifier: params[:id]).first
     if params[:send_status] == "send"
       # send message
       updated_draft_message.status = "sent"
@@ -90,8 +97,23 @@ class MessagesController < ApplicationController
   end
 
   def destroy #(post/delete)
-    Message.where(identifier: params[:id]).first.destroy
-    redirect_to messages_path and return
+    #Message.where(identifier: params[:id]).first.destroy
+    # user = User.find(current_user.id)
+    # user.messages.find_by_identifier(params[:id]).destroy
+    # redirect_to messages_path and return
+  user = User.find(current_user.id)
+  deleted_message = user.messages.find_by_identifier(params[:identifier])  
+#  deleted_message = Message.where(identifier: params[:identifier]).first
+
+  if deleted_message.id == deleted_message.origin_message
+    if Image.where(id: params[:id]).first != nil
+      Image.find(params[:id]).destroy
+    end 
+  end
+  deleted_message.destroy
+  redirect_to messages_path and return
+
+
 
   end
 end

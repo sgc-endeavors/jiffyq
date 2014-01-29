@@ -9,8 +9,9 @@ FactoryGirl.define do
     button1 "Yes I am!"
     button2 "No I'm Not"
     origin_message 1
+    page_views 0
     response1 "You are wrong."
     response2 "You are correct."
-    identifier "abc1234567"
+    sequence(:identifier) { |i| "abc1234567-#{i}" }
   end
 end
