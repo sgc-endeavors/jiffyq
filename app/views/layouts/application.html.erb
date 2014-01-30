@@ -11,6 +11,8 @@
   <meta property="og:site_name" content="o-meter"/>
   <meta property="og:image" content="https://o-meter-img.s3.amazonaws.com/uploads/<%=@message.image_id%>/<%=@message.image.s3_image_loc%>"/>
   <meta property="og:description" content="zzMy description goes here"/>
+  <meta property="og:url" content="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>"/>
+
 <%end%>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
