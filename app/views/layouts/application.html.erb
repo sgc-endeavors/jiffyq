@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 
 
-<meta property="og:title" content="zzThis is my Title"/>
+<meta property="og:title" content="<%=@message.question%> ---- This is my Title"/>
 <meta property="og:site_name" content="zzo-meter"/>
+<meta property="og:url" content="http://o-meter.herokuapp.com/"/>
 <meta property="og:description" content="zzMy description goes here"/>
 
 
@@ -19,15 +20,20 @@
 <body>
   
   <!-- this is for facebook share functionality-->
-  <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
- 
+ <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+
 <br>
 <div class="navbar navbar-fluid">
         <div class="navbar-inner">
