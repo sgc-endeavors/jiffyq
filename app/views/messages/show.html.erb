@@ -1,8 +1,5 @@
 
-<head>
-<meta property="og:url"             content="http://o-meter.herokuapp.com/messages/877d427a" /> 
-<meta property="og:title"           content="Digit Title" /> 
-</head>
+
 
 <ul class="thumbnails">
   <li class="span12">
@@ -32,7 +29,7 @@
 
 <% if @message.user.is_admin?%>
 
-<div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/877d427a" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
 <%end%>
 <br><br><br>

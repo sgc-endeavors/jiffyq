@@ -8,12 +8,16 @@
 
 <%if @message == nil %>
 <% title = "o-meter plug"%>
+<% image = "/ometer_logo.png"%>
 <% else%>
 <% title = @message.question%>
+<% image = "@message.s3_image_loc"%>
+
 <%end%>
 <meta property="og:title" content="<%=title%> ---- This is my Title"/>
-<meta property="og:site_name" content="zzo-meter"/>
+<meta property="og:site_name" content="o-meter"/>
 <meta property="og:url" content="http://o-meter.herokuapp.com/"/>
+<meta property="og:image" content=<%=image%>/>
 <meta property="og:description" content="zzMy description goes here"/>
 
 
