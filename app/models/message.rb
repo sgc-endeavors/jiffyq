@@ -6,4 +6,20 @@ class Message < ActiveRecord::Base
   def to_param
   	"#{identifier}".parameterize
   end
+
+  def destroy_related_image(image_id)
+  	image = Image.find(image_id)
+  	if image != nil
+    	image.destroy
+    end 
+  end
+
+  def count_page_views
+  	#if self.user != current_user #&& @response == 0
+
+  		self.page_views = self.page_views.to_i + 1
+    	self.save!
+  	#end
+  end
+
 end

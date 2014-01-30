@@ -58,21 +58,19 @@ describe "Message#Index_page" do
 			before(:each) { click_on "X" }
 		
 			context "the message being deleted had an original image" do
-				xit "removes the related image from the database" do
-					Image.find(@original_message.id).should be_nil
+				it "removes the related image from the database" do
+					expect {Image.find(@original_message.image_id)}.to raise_error(ActiveRecord::RecordNotFound)
 				end
 			end
 
 			it "removes the message" do
-				current_path.should == messages_path
-				should_not have_content("Am I Cooler Than Gerard? (2)")
+				should_not have_content("Am I Cooler Than Gerard?")
+				expect {Message.find(@original_message.id)}.to raise_error(ActiveRecord::RecordNotFound)
 			end
 
-			
-
+			it "routes the user back to the message_index page" do
+				current_path.should == messages_path				
+			end
 		end
-
-
-
 	end
 end
