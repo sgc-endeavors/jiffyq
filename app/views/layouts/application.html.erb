@@ -7,9 +7,8 @@
   <%= csrf_meta_tags %>
 
 <%if @message != nil %>
-<meta property="og:title" content=<%=@message.question%>/>
+<meta property="og:title" content="<%=@message.question%>"/>
 <meta property="og:site_name" content="o-meter"/>
-<meta property="og:url" content="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>"/>
 <!--
 <meta property="og:image" content=< %=@message.s3_image_loc%>/>
 <meta property="og:description" content="zzMy description goes here"/>
