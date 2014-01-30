@@ -6,8 +6,12 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-
-<meta property="og:title" content="<%=@message.question%> ---- This is my Title"/>
+<%if @message == nil %>
+<% title = "o-meter plug"%>
+<% else%>
+<% title = @message.question%>
+<%end%>
+<meta property="og:title" content="<%=title%> ---- This is my Title"/>
 <meta property="og:site_name" content="zzo-meter"/>
 <meta property="og:url" content="http://o-meter.herokuapp.com/"/>
 <meta property="og:description" content="zzMy description goes here"/>
