@@ -1,8 +1,14 @@
 Ometer::Application.routes.draw do
   
-  devise_for :users
-
   root :to => "messages#landing_page"
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  devise_for :users
+  ActiveAdmin.routes(self)
+
+  
 
   resources :messages, :images
 
