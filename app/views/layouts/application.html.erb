@@ -10,7 +10,7 @@
   <meta property="og:title" content="<%=@message.question%>"/>
   <meta property="og:site_name" content="o-meter"/>
   <meta property="og:image" content="https://o-meter-img.s3.amazonaws.com/uploads/<%=@message.image_id%>/<%=@message.image.s3_image_loc%>"/>
-  <meta property="og:description" content="zzMy description goes here"/>
+  <meta property="og:description" content="This is my description. It goes here"/>
   <meta property="og:url" content="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>"/>
 
 <%end%>
@@ -22,7 +22,7 @@
 <body>
   
   <!-- this is for facebook share functionality-->
- <div id="fb-root"></div>
+<div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -30,7 +30,6 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 
 
 
