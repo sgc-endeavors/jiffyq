@@ -37,10 +37,12 @@ ActiveAdmin.register Message do
 		end
 		def destroy
 			@message = Message.where(identifier: params[:id]).first
-			@message.destroy
-			if @message.user_id == @message.image.user_id
-				@message.image.destroy
+			if Image.where(id: @message.image_id).first != nil
+				if @message.user_id == @message.image.user_id 
+					@message.image.destroy
+				end
 			end
+			@message.destroy
 			redirect_to admin_messages_path
 		end
 	end
