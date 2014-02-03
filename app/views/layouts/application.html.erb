@@ -53,12 +53,23 @@
 
                   <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
                   <br>
-                  <li><div><%= link_to "My Questions", messages_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li> 
+                  <li><div><%= link_to "My Questions", messages_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
+                  
+                  <%if current_user.is_admin?%>
+                    <li><div>
+                      <%=link_to "Admin", admin_root_path%>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                  <%end%>   
                 <% else %>
-                  <li><div><%= link_to "New User?", new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Login", new_user_session_path %></div></li>
-                <% end %>
+                  <li><div>
+                    <%= link_to "New User?", new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Login", new_user_session_path %>
+                  </div></li>
                   <br>
-                <li><div><%= link_to "About", about_path %></div></li>
+                  <li><div>
+                <% end %>
+                  
+                <%= link_to "About", about_path %>
+                </div></li>
               </ul>
             </div>
           </div>

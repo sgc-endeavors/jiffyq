@@ -16,25 +16,31 @@ ActiveAdmin.register Message do
 		column :origin_message
 		column :updated_at
 		default_actions
-
-
 	end
 
-
-
-
-
-
 	controller do
+
+	# 	def new
+	# 		redirect_to admin_messages_path
+	# 	end
 		def show
 			@message = Message.where(identifier: params[:id]).first
 		end
 		def edit
 			@message = Message.where(identifier: params[:id]).first
 		end
+		def update
+			@message = Message.where(identifier: params[:id]).first
+			@message.update_attributes(params[:message])
+			@message.save!
+			redirect_to admin_messages_path
+		end
 		def destroy
 			@message = Message.where(identifier: params[:id]).first
 			@message.destroy
+			if @message.user_id == @message.image.user_id
+				@message.image.destroy
+			end
 			redirect_to admin_messages_path
 		end
 	end
