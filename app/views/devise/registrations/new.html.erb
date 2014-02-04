@@ -12,6 +12,11 @@
   <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
 
+  <div>
+    <%= f.check_box :terms, id: "terms" %>
+    <%= f.label :terms, "I accept the terms and conditions", for: "terms"%>
+	</div><br>
+
   <div><%= f.submit "Sign up", class: "btn btn-small btn-primary" %></div>
 <% end %>
 
