@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong. (500)</title>
+  <title>Oops. (500)</title>
   <style type="text/css">
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
@@ -18,8 +18,11 @@
 
 <body>
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.... and Gerard stinx!!!!</h1>
-  </div>
+
+    <br><br><br>
+    <%=image_tag "/the_bomb500.png", alt: "500error", id: "res_loc"%>
+    <br><br><br>
+    <%= link_to "Go to Home", landing_page_path %>
+
 </body>
 </html>
