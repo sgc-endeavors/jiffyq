@@ -32,7 +32,8 @@
 
 
 <% if @message.user.is_admin? && @message.status == "sent"%>
-  <div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+  <div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 <%end%>
 
 <br><br>

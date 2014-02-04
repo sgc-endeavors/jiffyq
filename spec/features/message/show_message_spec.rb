@@ -46,60 +46,83 @@ describe "Message#Show_page" do
 	end
 
 	context "the message was sent by the author" do
-			let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
+
+		context "the image for the question was destroyed" do
+			let(:sent_message) { FactoryGirl.create(:message, image_id: 99999, status: "sent")}
+				
 			before(:each) do
 				visit message_path(sent_message.identifier)
 			end
 
-			context "message recipient opens message and is not logged in" do		
-				it "shows the message details" do
-					should have_content("#{sent_message.question}")
-					should have_link("#{sent_message.button1}")
-					should have_link("#{sent_message.button2}")
-					should_not have_content("#{sent_message.response1}")
-					should_not have_content("#{sent_message.response2}")
-					should_not have_link("Forward")
-					should_not have_link("Create Your Own")
-					should_not have_link("Save & Send")
-					should_not have_link("Edit")
-				end
-
-			context "message recipient clicks on 'button1' " do		
-				it "shows response1" do
-					click_on "#{sent_message.button1}"
-					should have_content("#{sent_message.response1}")
-					should have_link("Forward")
-					should have_link("Create Your Own")
-					should have_link("Create a Reply")
-				end
+			it 'shows an alternative placeholder image' do
+				should have_css("img", text: "the_bomb.png")
 			end
+		end
 
-			context "message recipient clicks on 'button2' " do		
-				it "shows response2" do
-					click_on "#{sent_message.button2}"
-					should have_content("#{sent_message.response2}")
-					should have_link("Forward")
-					should have_link("Create Your Own")
-					should have_link("Create a Reply")
+
+
+
+
+			
+
+
+			context "the image for the question was not destroyed" do
+				let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
+				before(:each) do
+					visit message_path(sent_message.identifier)
 				end
-			end
 
-			context "message recipient pressed button1 or button2" do
-				before(:each) { click_on "#{sent_message.button1}" }
+				context "message recipient opens message and is not logged in" do		
+					it "shows the message details" do
+						should have_css("img", text: sent_message.image.s3_image_loc)
+						should have_content("#{sent_message.question}")
+						should have_link("#{sent_message.button1}")
+						should have_link("#{sent_message.button2}")
+						should_not have_content("#{sent_message.response1}")
+						should_not have_content("#{sent_message.response2}")
+						should_not have_link("Forward")
+						should_not have_link("Create Your Own")
+						should_not have_link("Save & Send")
+						should_not have_link("Edit")
+					end
 
-				context "message recipient pressed 'Forward'" do
-					before(:each) { click_on "Forward" }
-
-					it "routes the user to the 'login' page" do
-						current_path.should == new_user_session_path 
+				context "message recipient clicks on 'button1' " do		
+					it "shows response1" do
+						click_on "#{sent_message.button1}"
+						should have_content("#{sent_message.response1}")
+						should have_link("Forward")
+						should have_link("Create Your Own")
+						should have_link("Create a Reply")
 					end
 				end
 
-				context "message recipient pressed 'Create a Reply'" do
-					before(:each) { click_on "Create a Reply" }
+				context "message recipient clicks on 'button2' " do		
+					it "shows response2" do
+						click_on "#{sent_message.button2}"
+						should have_content("#{sent_message.response2}")
+						should have_link("Forward")
+						should have_link("Create Your Own")
+						should have_link("Create a Reply")
+					end
+				end
 
-					it "routes the user to the 'login' page" do
-						current_path.should == new_user_session_path 
+				context "message recipient pressed button1 or button2" do
+					before(:each) { click_on "#{sent_message.button1}" }
+
+					context "message recipient pressed 'Forward'" do
+						before(:each) { click_on "Forward" }
+
+						it "routes the user to the 'login' page" do
+							current_path.should == new_user_session_path 
+						end
+					end
+
+					context "message recipient pressed 'Create a Reply'" do
+						before(:each) { click_on "Create a Reply" }
+
+						it "routes the user to the 'login' page" do
+							current_path.should == new_user_session_path 
+						end
 					end
 				end
 			end
