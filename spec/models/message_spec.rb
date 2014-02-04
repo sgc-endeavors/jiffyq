@@ -28,19 +28,49 @@ describe Message do
 
  	describe "#count_page_views" do
  		before(:each) do
- 			@message = FactoryGirl.create(:message)
+ 		  @user = FactoryGirl.create(:user)
+      @message = FactoryGirl.create(:message, user_id: @user.id)
  		end
 
- 		it "should add +1 to the message's page_views total if visitor is not the author" do
- 			@message.count_page_views
- 			@message.page_views.should == 1
- 		end
+    context "visitor is logged in and IS the author" do
+      it "should NOT add +1 to the message's page_views total" do
+        @message.count_page_views(0, @message.user)
+        @message.page_views.should == 0
+      end
+    end 		
 
- 		xit "should NOT add +1 to the message's page_views total if visitor IS the author" do
- 			current_user = @message.user
- 			@message.count_page_views
- 			@message.page_views.should == 0
- 		end
+    context "visitor is logged in and is not the author" do
+      before(:each) do
+        @a_different_user = FactoryGirl.create(:user)
+      end
+
+      context "visitor visits the show page from a link" do
+        before(:each) do
+          @response = 0
+        end
+        
+        it "should add +1 to the message's page_views total" do
+     			@message.count_page_views(@response, @a_different_user)
+     			@message.page_views.should == 1
+     		end
+      end
+
+      context "visitor visits the show page and presses either response button" do
+        before(:each) do
+          @response = 1
+        end
+        
+        it "should NOT add +1 to the message's page_views total" do
+          @message.count_page_views(@response, @a_different_user)
+          @message.page_views.should == 0
+        end
+      end
+ 
+
+
+
+
+    end
 
 
 

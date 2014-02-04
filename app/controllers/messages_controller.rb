@@ -69,11 +69,11 @@ class MessagesController < ApplicationController
   def show
     @response = params[:response].to_i
     @message = Message.where(identifier: params[:id]).first
-    #@message.count_page_views
-    if @message.user != current_user && @response == 0
-      @message.page_views = @message.page_views.to_i + 1
-      @message.save!
-    end
+    @message.count_page_views(@response, current_user)
+    # if @message.user != current_user && @response == 0
+    #   @message.page_views = @message.page_views.to_i + 1
+    #   @message.save!
+    # end
   end
 
   def edit

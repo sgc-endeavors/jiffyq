@@ -14,12 +14,11 @@ class Message < ActiveRecord::Base
     end 
   end
 
-  def count_page_views
-  	#if self.user != current_user #&& @response == 0
-
+  def count_page_views(response, current_user)
+  	if self.user != current_user && response == 0
   		self.page_views = self.page_views.to_i + 1
     	self.save!
-  	#end
+  	end
   end
 
 end
