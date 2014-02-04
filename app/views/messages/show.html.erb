@@ -5,7 +5,12 @@
   <li class="span12">
     <div class="thumbnail" align="middle">
       <h3 id="qod" >Question of the Day</h3>
+      <%if @message.image%>
+
       <%=image_tag @message.image.s3_image_loc_url.to_s, id: "res_loc" %>
+      <%else%>
+      <%=image_tag "/the_bomb.png", id: "res_loc"%>
+      <%end%>
 
       <h4><%="#{@message.question}"%></h4>
       
@@ -26,13 +31,13 @@
 </ul>
 
 
-
-<% if @message.user.is_admin?%>
-
-<div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-
-
+<% if @message.user.is_admin? && @message.status == "sent"%>
+  <div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 <%end%>
+
+<br><br>
+
+
 
 
 

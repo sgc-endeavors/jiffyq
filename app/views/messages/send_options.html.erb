@@ -9,7 +9,15 @@
 				<%= text_area_tag "stuff_to_copy", "#{@message.question}  Answer at: #{message_url(@message)}", rows: 3%>
 			<li> <a class="btn btn-small  btn-primary"href="sms:;body=<%=@message.question + " Find Out: " + message_url(@message)%>">Open TextMessenger</a> and Paste</li>
 		</ol>
-<br>
+<br><br>
+
+<% if @message.user.is_admin?%>
+	<div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<%end%>
+
+<br><br>
+
+
 <%= link_to "Return to Question", message_path(@message, anchor: "qod")%> | <%= link_to "Create Another", new_image_path%>
 
 

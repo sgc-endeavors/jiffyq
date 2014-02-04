@@ -11,9 +11,11 @@
   <meta property="og:site_name" content="o-meter"/>
   <meta property="og:url" content="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>"/>
 <meta property="og:description" content="Click image to answer.  o-meter...  helping people measure all things relevant and irrelevant since 2014."/>
- 
-  <meta property="og:image" content="<%=@message.image.s3_image_loc%>"/>
-   
+  <%if @message.image%>
+    <meta property="og:image" content="<%=@message.image.s3_image_loc%>"/>
+  <%else%>
+    <meta property="og:image" content="/the_bomb.png"/>
+  <%end%> 
 
 <%end%>
 

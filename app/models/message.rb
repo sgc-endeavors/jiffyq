@@ -8,7 +8,7 @@ class Message < ActiveRecord::Base
   end
 
   def destroy_related_image(image_id)
-  	image = Image.find(image_id)
+  	image = Image.where(id: image_id).first
   	if image != nil
     	image.destroy
     end 
