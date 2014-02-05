@@ -46,7 +46,25 @@ describe "Message#Show_page" do
 	end
 
 	context "the message was sent by the author" do
-
+		let(:sent_message) { FactoryGirl.create(:message, status: "sent")}
+		before(:each) do
+			sign_in_as_existing_user(sent_message.user)
+			visit message_path(sent_message)
+		end
+		context "the author wants to simply forward the message" do
+			it "shows the forward link" do
+				should have_link("Forward")
+			end	
+			context "the author presses forward" do
+				before(:each) { click_on "Forward"}
+				
+				it "routes the author to the send options page" do
+					current_path.should == send_options_path
+				end
+			end
+		end
+	end
+	context "the message was sent by the author" do
 		# context "the image for the question was destroyed" do
 		# 	let(:sent_message) { FactoryGirl.create(:message, image_id: 99999, status: "sent")}
 				
@@ -89,7 +107,6 @@ describe "Message#Show_page" do
 						should have_content("#{sent_message.response1}")
 						should have_link("Forward")
 						should have_link("Create Your Own")
-						should have_link("Create a Reply")
 					end
 				end
 
@@ -99,7 +116,6 @@ describe "Message#Show_page" do
 						should have_content("#{sent_message.response2}")
 						should have_link("Forward")
 						should have_link("Create Your Own")
-						should have_link("Create a Reply")
 					end
 				end
 
@@ -108,14 +124,6 @@ describe "Message#Show_page" do
 
 					context "message recipient pressed 'Forward'" do
 						before(:each) { click_on "Forward" }
-
-						it "routes the user to the 'login' page" do
-							current_path.should == new_user_session_path 
-						end
-					end
-
-					context "message recipient pressed 'Create a Reply'" do
-						before(:each) { click_on "Create a Reply" }
 
 						it "routes the user to the 'login' page" do
 							current_path.should == new_user_session_path 
