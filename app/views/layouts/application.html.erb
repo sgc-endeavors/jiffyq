@@ -8,9 +8,9 @@
 
 <%if @message != nil %>
   <meta property="og:title" content="<%=@message.question%>"/>
-  <meta property="og:site_name" content="o-meter"/>
-  <meta property="og:url" content="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>"/>
-<meta property="og:description" content="Click image to answer.  o-meter...  helping people measure all things relevant and irrelevant since 2014."/>
+  <meta property="og:site_name" content="JiffyPoll"/>
+  <meta property="og:url" content="www.jiffypoll.com/messages/<%=@message.identifier%>"/>
+<meta property="og:description" content="Click image to answer.  JiffyPoll...  helping people measure all things relevant and irrelevant since 2014."/>
   <%if @message.image%>
     <meta property="og:image" content="<%=@message.image.s3_image_loc%>"/>
   <%else%>
@@ -46,7 +46,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-th-list"></span>
             </a>
-              <a tabindex=-1 href= <%=landing_page_path(anchor: "qod")%> class="brand"> <img style="width: 30px" src="/ometer_logo.png"> o-meter</a>
+              <a tabindex=-1 href= <%=landing_page_path(anchor: "qod")%> class="brand"> <img style="width: 30px" src="/jiffypoll_logo.png"> JiffyPoll</a>
           
             <div class = "nav-collapse collapse">
               <ul class="nav pull-right">

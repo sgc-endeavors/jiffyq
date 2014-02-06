@@ -4,7 +4,7 @@
 <ul class="thumbnails">
   <li class="span12">
     <div class="thumbnail" align="middle">
-      <h3 id="qod" >Question of the Day</h3>
+      <h3 id="qod" >JiffyPoll of the Day</h3>
       <%if @message.image%>
         <%=image_tag @message.image.s3_image_loc_url.to_s, id: "res_loc" %>
       <%else%>
@@ -32,7 +32,7 @@
 
 <% if @message.user.is_admin? && @message.status == "sent"%>
 
-  <div class="fb-like" data-href="http://o-meter.herokuapp.com/messages/<%=@message.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+  <div class="fb-like" data-href="www.jiffypoll.com/messages/<%=@message.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 <%end%>
 
 <br><br>
@@ -80,7 +80,7 @@
 <button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
   <div id="demo" class="collapse out">
     <small>
-      You've just receive an o-meter Question of the Day.  What do you want to do?<br>
+      You've just receive a JiffyPoll Question of the Day.  What do you want to do?<br>
       <ul>
         <li>Go back to work and later curse your friend for wasting your time.</li>
         <li>Forward it to others?... press the Forward Button.</li>      
