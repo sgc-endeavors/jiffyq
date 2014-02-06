@@ -1,17 +1,16 @@
 <%=form_for(@complaint) do |f|%>
 
-	
-	<%=f.label :complainer_email%>
+	<%=f.label :problem_id, "Type of Problem:"%>
+	<%=f.select :problem_id, options_from_collection_for_select(Problem.all, :id, :name), {prompt: "Select Problem"}%>
+
+	<%=f.label :complainer_email, "Your Email:"%>
 	<%=f.text_field :complainer_email%> <br>
 
-	<%=f.label :notes%>
-	<%=f.text_field :notes%>
-
-	<%=f.label :type%>
-	<%=f.text_field :type%>
+	<%=f.label :notes, "Detailed Description of Problem:"%>
+	<%=f.text_area :notes%>
 
 	<br><br>
 
-	<%=submit_tag "Send", class: "btn btn-small btn-primary"%>
+	<%=submit_tag "Submit", class: "btn btn-small btn-primary"%>
 
 <%end%>

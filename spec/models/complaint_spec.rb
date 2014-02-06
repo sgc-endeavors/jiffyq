@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Complaint do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+  	FactoryGirl.create(:complaint).should be_valid
+  end
+
+  it { should belong_to(:problem) }
+  it { should belong_to(:complaint_status) }
 end

@@ -1,11 +1,15 @@
 class MessagesController < ApplicationController
   
-  before_filter :authenticate_user!, except: [ :landing_page, :show, :about ]
+  before_filter :authenticate_user!, except: [ :landing_page, :show, :about, :legal ]
 
   def about
 
   end
  
+
+ def legal
+
+ end
 
   def landing_page
 

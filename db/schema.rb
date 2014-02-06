@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206165129) do
+ActiveRecord::Schema.define(:version => 20140206223704) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,16 +46,22 @@ ActiveRecord::Schema.define(:version => 20140206165129) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "complaint_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "complaints", :force => true do |t|
-    t.string   "type"
     t.string   "complainer_email"
     t.string   "notes"
-    t.string   "status"
     t.integer  "targeted_question"
     t.integer  "targeted_user"
     t.integer  "targeted_image"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "problem_id"
+    t.integer  "complaint_status_id"
   end
 
   create_table "images", :force => true do |t|
@@ -79,6 +85,12 @@ ActiveRecord::Schema.define(:version => 20140206165129) do
     t.integer  "user_id"
     t.string   "identifier"
     t.integer  "page_views"
+  end
+
+  create_table "problems", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

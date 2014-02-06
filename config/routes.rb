@@ -10,13 +10,15 @@ Ometer::Application.routes.draw do
 
   
 
-  resources :messages, :images, :complaints
+  resources :messages, :images, :complaints, :problems
 
   get "/landing_page" => "messages#landing_page", as: "landing_page"
 
   get "/send_options" => "messages#send_options", as: "send_options"
 
   get "/about" => "messages#about", as: "about"
+
+  get "/legal" => "messages#legal", as: "legal"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

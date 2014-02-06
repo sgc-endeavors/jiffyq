@@ -99,6 +99,7 @@ describe "Message#Show_page" do
 						should_not have_link("Create Your Own")
 						should_not have_link("Save & Send")
 						should_not have_link("Edit")
+						should have_link("Report a Problem")
 					end
 
 				context "message recipient clicks on 'button1' " do		
@@ -107,6 +108,7 @@ describe "Message#Show_page" do
 						should have_content("#{sent_message.response1}")
 						should have_link("Forward")
 						should have_link("Create Your Own")
+						should have_link("Report a Problem")
 					end
 				end
 

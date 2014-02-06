@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :complaint do
-    type ""
+    association :problem
+    association :complaint_status
     complainer_email "MyString"
     notes "MyString"
-    status "MyString"
     targeted_question 1
     targeted_user 1
     targeted_image 1

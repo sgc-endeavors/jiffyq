@@ -1,0 +1,8 @@
+<h3>Legal</h3>
+
+
+<%File.open(Rails.root.join('public/terms.txt')) do |f|%>
+<%f.each_line do |line|%>
+<%=line%>
+<%end%>
+<%end%>
