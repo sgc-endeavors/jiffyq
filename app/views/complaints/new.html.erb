@@ -1,0 +1,17 @@
+<%=form_for(@complaint) do |f|%>
+
+	
+	<%=f.label :complainer_email%>
+	<%=f.text_field :complainer_email%> <br>
+
+	<%=f.label :notes%>
+	<%=f.text_field :notes%>
+
+	<%=f.label :type%>
+	<%=f.text_field :type%>
+
+	<br><br>
+
+	<%=submit_tag "Send", class: "btn btn-small btn-primary"%>
+
+<%end%>

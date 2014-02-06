@@ -10,7 +10,7 @@ Ometer::Application.routes.draw do
 
   
 
-  resources :messages, :images
+  resources :messages, :images, :complaints
 
   get "/landing_page" => "messages#landing_page", as: "landing_page"
 
