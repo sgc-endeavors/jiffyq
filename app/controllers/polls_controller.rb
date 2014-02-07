@@ -53,7 +53,7 @@ class PollsController < ApplicationController
     else
       redirect_to new_image_path and return  
     end
-      render :new, anchor: "qod"    
+      render :new, anchor: "1"    
   end
 
   def create
@@ -79,7 +79,7 @@ class PollsController < ApplicationController
   def edit
     @draft_poll = Poll.where(identifier: params[:id]).first
     if @draft_poll.status == "sent"
-      redirect_to poll_path(@draft_poll, anchor: "qod") and return
+      redirect_to poll_path(@draft_poll, anchor: "1") and return
     end
   end
 
@@ -92,7 +92,7 @@ class PollsController < ApplicationController
       updated_draft_poll.update_attributes(params[:poll])
     end
     updated_draft_poll.save!
-    redirect_to poll_path(updated_draft_poll, anchor: "qod")
+    redirect_to poll_path(updated_draft_poll, anchor: "1")
   end
 
   def destroy #(post/delete)

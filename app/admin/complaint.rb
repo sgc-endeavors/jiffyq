@@ -4,7 +4,7 @@ index do
 		column :id
 		column "Complaintant", :complainer_email 
 		column :notes
-		column :status
+		column :complaint_status
 		column :targeted_question
 		column :targeted_user
 		column :targeted_image

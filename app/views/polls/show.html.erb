@@ -4,19 +4,32 @@
 <ul class="thumbnails">
   <li class="span12">
     <div class="thumbnail" align="middle">
-      <h3 id="qod" >JiffyPoll of the Day</h3>
+      <h3 id="1" >JiffyPoll of the Day</h3>
       <%if @poll.image%>
-        <%=image_tag @poll.image.s3_image_loc_url.to_s, id: "res_loc" %>
+        <%=image_tag @poll.image.s3_image_loc_url.to_s, id: "2" %>
       <%else%>
-      <%=image_tag "/the_bomb.png", id: "res_loc"%>
+      <%=image_tag "/the_bomb.png", id: "2"%>
       <%end%>
 
       <h4><%="#{@poll.question}"%></h4>
-      
-			<div style= "line-height: 2.3" >		
-        <a class="btn btn-small btn-success" href=<%=poll_path(@poll, response: 1, anchor: "res_loc")%>><%=@poll.button1%></a>
-				<a class="btn btn-small btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "res_loc")%>><%=@poll.button2%></a>
-      </div>
+
+      <%if @response == 0%>
+        <div style= "line-height: 2.3" >		
+          <a class="btn btn-small btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+  				<a class="btn btn-small btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+        </div>
+      <%elsif @response == 1%>
+        <div style= "line-height: 2.3" >    
+          <a class="btn btn-small disabled" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+        </div>
+      <%elsif @response == 2%>
+        <div style= "line-height: 2.3" >    
+          <a class="btn btn-small btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small disabled"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+        </div>
+      <%end%>
+
       <p><b><i>
         <%if @response == 1%>
           <%=@poll.response1%>
@@ -32,7 +45,12 @@
 
 <% if @poll.user.is_admin? && @poll.status == "sent"%>
 
-  <div class="fb-like" data-href="www.jiffypoll.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+  <div>
+    <div class="fb-like" data-href="www.jiffypoll.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  </div>
 <%end%>
 
 <br><br>
@@ -58,14 +76,14 @@
 
 <%=link_to "Save & Send",  send_options_path(poll_id: @poll.id)%> &nbsp;&nbsp;|&nbsp;&nbsp;
   
-<%=link_to "Edit",  edit_poll_path(@poll, anchor: "qod")%> 
+<%=link_to "Edit",  edit_poll_path(@poll, anchor: "1")%> 
 <%end%>
 <%if (@response != 0 && @poll.status == "sent") || (current_user && @poll.status == "sent") %>
 
 <button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
   <div id="demo" class="collapse out">
     <small>
-      You've just receive a JiffyPoll Question of the Day.  What do you want to do?<br>
+      You've just received a JiffyPoll of the Day.  What do you want to do?<br>
       <ul>
         <li>Go back to work and later curse your friend for wasting your time.</li>
         <li>Forward it to others?... press the Forward Button.</li>      
@@ -78,7 +96,7 @@
   <%if @poll.user == current_user%>
     <% forwardroute = send_options_path(poll_id: @poll.id)%>
   <%else%>
-    <% forwardroute = new_poll_path(origin_id: @poll.id, forward: true, anchor: "qod")%>
+    <% forwardroute = new_poll_path(origin_id: @poll.id, forward: true, anchor: "1")%>
   <%end%>
 
 	<%=link_to "Forward", forwardroute%> |
