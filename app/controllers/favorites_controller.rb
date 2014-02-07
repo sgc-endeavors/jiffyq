@@ -9,4 +9,12 @@ class FavoritesController < ApplicationController
   	favorite.save!
   	redirect_to polls_path
   end
+
+def destroy
+	 user = User.find(current_user.id)
+    deleted_favorite = Favorite.where(user_id: user.id).where(id: params[:id]).first  
+    deleted_favorite.destroy
+    redirect_to polls_path and return
+end
+
 end

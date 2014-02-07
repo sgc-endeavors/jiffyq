@@ -1,5 +1,5 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe ComplaintsController do
+# describe ComplaintsController do
 
-end
+# end

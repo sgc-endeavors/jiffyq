@@ -10,7 +10,7 @@
   <meta property="og:title" content="<%=@poll.question%>"/>
   <meta property="og:site_name" content="JiffyPoll"/>
   <meta property="og:url" content="www.jiffypoll.com/polls/<%=@poll.identifier%>"/>
-<meta property="og:description" content="Click image to answer.  JiffyPoll...  helping people measure all things relevant and irrelevant since 2014."/>
+<meta property="og:description" content="Click image to answer.  JiffyPoll...  helping people measure all things relevant and irrelevant since MMXIV."/>
   <%if @poll.image%>
     <meta property="og:image" content="<%=@poll.image.s3_image_loc%>"/>
   <%else%>
@@ -53,14 +53,14 @@
                  
                 <% if user_signed_in? %>
 
-                  <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
+                  <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
                   <br>
-                  <li><div><%= link_to "My Questions", polls_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
+                  <li><div><%= link_to "My Polls/Faves", polls_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Poll', new_image_path %></div></li><br>
                   
                   <%if current_user.is_admin?%>
                     <li><div>
                       <%=link_to "Admin", admin_root_path%>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
                   <%end%>   
                 <% else %>
                   <li><div>

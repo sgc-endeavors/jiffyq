@@ -15,7 +15,7 @@ describe "Poll#Index_page" do
 		end
 
 		it "has a header called 'My Questions'" do
-			should have_content("My Questions")
+			should have_content("My Polls")
 		end
 
 		it "has links to the user's questions" do

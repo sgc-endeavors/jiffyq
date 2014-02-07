@@ -1,4 +1,23 @@
-<h3>My Questions</h3>
+<h3>My Favorites</h3>
+
+<% @favorites.each do |favorite|%>
+
+	<p>
+	
+			<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
+			(<%=favorite.poll.page_views.to_i%>)
+
+			<%=link_to "X", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+	
+	</p>
+
+<% end %>
+
+<hr />
+
+
+
+<h3>My Polls</h3>
 
 <% @polls.each do |poll|%>
 
