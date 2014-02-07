@@ -1,0 +1,14 @@
+<h3>My Questions</h3>
+
+<% @polls.each do |poll|%>
+
+	<p>
+	<%= link_to poll.question, poll_path(poll) %> 
+	(<%=poll.page_views.to_i%>)
+	
+	<%=link_to "X", poll_path(poll.image_id, identifier: poll.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+	</p>
+
+<% end %>
+
+

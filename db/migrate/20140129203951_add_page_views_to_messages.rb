@@ -1,5 +1,5 @@
-class AddPageViewsToMessages < ActiveRecord::Migration
+class AddPageViewsToPolls < ActiveRecord::Migration
   def change
-  	add_column :messages, :page_views, :integer
+  	add_column :polls, :page_views, :integer
   end
 end

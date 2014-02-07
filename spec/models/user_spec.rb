@@ -5,7 +5,7 @@ describe User do
   	FactoryGirl.create(:user).should be_valid
   end
 
-  it { should have_many(:messages) }
+  it { should have_many(:polls) }
 
   it { should have_many(:images) }
 end

@@ -16,9 +16,9 @@ describe "Image#New_page" do
 		it { should have_button("Upload")}
 		
 		context "user presses Upload" do
-			it "routes user to the create new message path" do
+			it "routes user to the create new poll path" do
 				click_on "Upload"
-				current_path.should == new_message_path
+				current_path.should == new_poll_path
 			end
 
 			it "saves the current user's id as the 'user_id' for the image" do

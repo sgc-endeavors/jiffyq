@@ -5,8 +5,8 @@ ActiveAdmin.register Image do
 		column :s3_image_loc 
 		column :created_at
 		column :user
-		column :messages do |image|
-			image.messages.count
+		column :polls do |image|
+			image.polls.count
 		end
 		default_actions
 	end

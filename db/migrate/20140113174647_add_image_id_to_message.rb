@@ -1,12 +1,12 @@
-class AddImageIdToMessage < ActiveRecord::Migration
+class AddImageIdToPoll < ActiveRecord::Migration
   def up
-  	add_column :messages, :image_id, :integer
-  	remove_column :messages, :image
+  	add_column :polls, :image_id, :integer
+  	remove_column :polls, :image
   end
 
   def down
-  	remove_column :messages, :image_id
-  	add_column :messages, :image, :string
+  	remove_column :polls, :image_id
+  	add_column :polls, :image, :string
 
   end
 end

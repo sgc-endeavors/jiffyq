@@ -1,9 +1,9 @@
-class RemoveAddressColumnFromMessage < ActiveRecord::Migration
+class RemoveAddressColumnFromPoll < ActiveRecord::Migration
   def up
-  	remove_column :messages, :address
+  	remove_column :polls, :address
   end
 
   def down
-  	add_column :messages, :address, :string
+  	add_column :polls, :address, :string
   end
 end

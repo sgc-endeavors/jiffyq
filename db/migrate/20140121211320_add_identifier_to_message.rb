@@ -1,5 +1,5 @@
-class AddIdentifierToMessage < ActiveRecord::Migration
+class AddIdentifierToPoll < ActiveRecord::Migration
   def change
-  	add_column :messages, :identifier, :string
+  	add_column :polls, :identifier, :string
   end
 end

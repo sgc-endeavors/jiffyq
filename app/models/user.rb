@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   validates :terms, :acceptance => {:accept => true}
 
   # attr_accessible :title, :body
-  has_many :messages
+  has_many :polls
   has_many :images
 end

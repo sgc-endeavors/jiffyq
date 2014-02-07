@@ -1,5 +1,5 @@
-class AddUserIdToMessage < ActiveRecord::Migration
+class AddUserIdToPoll < ActiveRecord::Migration
   def change
-  add_column :messages, :user_id, :integer
+  add_column :polls, :user_id, :integer
   end
 end

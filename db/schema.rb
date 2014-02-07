@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(:version => 20140206223704) do
     t.integer  "user_id"
   end
 
-  create_table "messages", :force => true do |t|
+  create_table "polls", :force => true do |t|
     t.string   "question"
     t.string   "button1"
     t.string   "button2"
-    t.integer  "origin_message"
+    t.integer  "origin_poll"
     t.string   "response1"
     t.string   "response2"
     t.datetime "created_at",     :null => false

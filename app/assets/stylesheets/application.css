@@ -11,5 +11,5 @@
  *= require_self
  *= require bootstrap_and_overrides
  *= require images
- *= require messages
+ *= require polls
  */

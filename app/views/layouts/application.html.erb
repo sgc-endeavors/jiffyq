@@ -6,13 +6,13 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-<%if @message != nil %>
-  <meta property="og:title" content="<%=@message.question%>"/>
+<%if @poll != nil %>
+  <meta property="og:title" content="<%=@poll.question%>"/>
   <meta property="og:site_name" content="JiffyPoll"/>
-  <meta property="og:url" content="www.jiffypoll.com/messages/<%=@message.identifier%>"/>
+  <meta property="og:url" content="www.jiffypoll.com/polls/<%=@poll.identifier%>"/>
 <meta property="og:description" content="Click image to answer.  JiffyPoll...  helping people measure all things relevant and irrelevant since 2014."/>
-  <%if @message.image%>
-    <meta property="og:image" content="<%=@message.image.s3_image_loc%>"/>
+  <%if @poll.image%>
+    <meta property="og:image" content="<%=@poll.image.s3_image_loc%>"/>
   <%else%>
     <meta property="og:image" content="/the_bomb.png"/>
   <%end%> 
@@ -55,7 +55,7 @@
 
                   <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
                   <br>
-                  <li><div><%= link_to "My Questions", messages_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
+                  <li><div><%= link_to "My Questions", polls_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
                   
                   <%if current_user.is_admin?%>
                     <li><div>

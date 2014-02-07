@@ -6,7 +6,7 @@ SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
-SET client_min_messages = warning;
+SET client_min_polls = warning;
 
 SET search_path = public, pg_catalog;
 
@@ -14,16 +14,16 @@ DROP INDEX public.unique_schema_migrations;
 DROP INDEX public.index_users_on_reset_password_token;
 DROP INDEX public.index_users_on_email;
 ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
-ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
+ALTER TABLE ONLY public.polls DROP CONSTRAINT polls_pkey;
 ALTER TABLE ONLY public.images DROP CONSTRAINT images_pkey;
 ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
-ALTER TABLE public.messages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.polls ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.images ALTER COLUMN id DROP DEFAULT;
 DROP SEQUENCE public.users_id_seq;
 DROP TABLE public.users;
 DROP TABLE public.schema_migrations;
-DROP SEQUENCE public.messages_id_seq;
-DROP TABLE public.messages;
+DROP SEQUENCE public.polls_id_seq;
+DROP TABLE public.polls;
 DROP SEQUENCE public.images_id_seq;
 DROP TABLE public.images;
 DROP EXTENSION plpgsql;
@@ -96,15 +96,15 @@ ALTER SEQUENCE images_id_seq OWNED BY images.id;
 
 
 --
--- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: polls; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE messages (
+CREATE TABLE polls (
     id integer NOT NULL,
     question character varying(255),
     button1 character varying(255),
     button2 character varying(255),
-    origin_message integer,
+    origin_poll integer,
     address character varying(255),
     response1 character varying(255),
     response2 character varying(255),
@@ -118,10 +118,10 @@ CREATE TABLE messages (
 
 
 --
--- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: polls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE messages_id_seq
+CREATE SEQUENCE polls_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -130,10 +130,10 @@ CREATE SEQUENCE messages_id_seq
 
 
 --
--- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: polls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+ALTER SEQUENCE polls_id_seq OWNED BY polls.id;
 
 
 --
@@ -196,7 +196,7 @@ ALTER TABLE ONLY images ALTER COLUMN id SET DEFAULT nextval('images_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+ALTER TABLE ONLY polls ALTER COLUMN id SET DEFAULT nextval('polls_id_seq'::regclass);
 
 
 --
@@ -272,10 +272,10 @@ SELECT pg_catalog.setval('images_id_seq', 74, true);
 
 
 --
--- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: polls; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY messages (id, question, button1, button2, origin_message, address, response1, response2, created_at, updated_at, status, image_id, user_id, identifier) FROM stdin;
+COPY polls (id, question, button1, button2, origin_poll, address, response1, response2, created_at, updated_at, status, image_id, user_id, identifier) FROM stdin;
 15	U cool	Yes	No	\N		Yeso	Noo	2014-01-16 20:41:22.50251	2014-01-16 20:41:22.50251	\N	8	\N	\N
 17	Question	Yes	No	\N	grcote@gmail.com	Y1	N1	2014-01-16 21:37:00.749024	2014-01-16 21:37:00.749024	\N	10	\N	\N
 16	Do I rip more than just farts?	Yes	No	\N		Yeah I know I'm a badass	Whatever sucka	2014-01-16 21:35:43.662583	2014-01-16 21:42:40.354074	sent	9	\N	\N
@@ -355,10 +355,10 @@ COPY messages (id, question, button1, button2, origin_message, address, response
 
 
 --
--- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: polls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('messages_id_seq', 75, true);
+SELECT pg_catalog.setval('polls_id_seq', 75, true);
 
 
 --
@@ -409,11 +409,11 @@ ALTER TABLE ONLY images
 
 
 --
--- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: polls_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY polls
+    ADD CONSTRAINT polls_pkey PRIMARY KEY (id);
 
 
 --

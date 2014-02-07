@@ -3,8 +3,8 @@ ActiveAdmin.register User do
 		selectable_column
 		column :id
 		column :email
-		column :messages do |user|
-			user.messages.count
+		column :polls do |user|
+			user.polls.count
 		end
 		column "Created At", :remember_created_at
 		column :is_admin

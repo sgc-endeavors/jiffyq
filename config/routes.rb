@@ -1,6 +1,6 @@
 Ometer::Application.routes.draw do
   
-  root :to => "messages#landing_page"
+  root :to => "polls#landing_page"
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -10,15 +10,15 @@ Ometer::Application.routes.draw do
 
   
 
-  resources :messages, :images, :complaints, :problems
+  resources :polls, :images, :complaints, :problems
 
-  get "/landing_page" => "messages#landing_page", as: "landing_page"
+  get "/landing_page" => "polls#landing_page", as: "landing_page"
 
-  get "/send_options" => "messages#send_options", as: "send_options"
+  get "/send_options" => "polls#send_options", as: "send_options"
 
-  get "/about" => "messages#about", as: "about"
+  get "/about" => "polls#about", as: "about"
 
-  get "/legal" => "messages#legal", as: "legal"
+  get "/legal" => "polls#legal", as: "legal"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

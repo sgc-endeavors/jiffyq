@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController do
+describe PollsController do
 
   # describe "GET 'index'" do
   #   it "returns http success" do

@@ -5,22 +5,22 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
 
-def preview_a_new_message(new_message)
-  fill_in "message_question", with: new_message.question
-  fill_in "message_button1", with: new_message.button1
-  fill_in "message_button2", with: new_message.button2
-  fill_in "message_response1", with: new_message.response1
-  fill_in "message_response2", with: new_message.response2
+def preview_a_new_poll(new_poll)
+  fill_in "poll_question", with: new_poll.question
+  fill_in "poll_button1", with: new_poll.button1
+  fill_in "poll_button2", with: new_poll.button2
+  fill_in "poll_response1", with: new_poll.response1
+  fill_in "poll_response2", with: new_poll.response2
   click_on "Preview"
 end
 
 
-def update_draft_message
-  fill_in "message_question", with: "Am I more bad ass than Gerard?" 
-  fill_in "message_button1", with: "Yes"
-  fill_in "message_button2", with: "No"
-  fill_in "message_response1", with: "Suck it nerd... no you're not."
-  fill_in "message_response2", with: "Better luck next time chump!"
+def update_draft_poll
+  fill_in "poll_question", with: "Am I more bad ass than Gerard?" 
+  fill_in "poll_button1", with: "Yes"
+  fill_in "poll_button2", with: "No"
+  fill_in "poll_response1", with: "Suck it nerd... no you're not."
+  fill_in "poll_response2", with: "Better luck next time chump!"
 
 end
 
