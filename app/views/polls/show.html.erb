@@ -45,7 +45,7 @@
 
 <% if @poll.user.is_admin? && @poll.status == "sent"%>
 
-  <div>
+  <div style="display:inline-block;vertical-align:top"> 
     <div class="fb-like" data-href="www.jiffypoll.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 
     <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
