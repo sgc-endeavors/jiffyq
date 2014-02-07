@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
 	rescue_from CanCan::AccessDenied do |exception|
    # flash[:alert] = "Access denied."
-    redirect_to landing_page_path
+    redirect_to home_path
   end
 
 

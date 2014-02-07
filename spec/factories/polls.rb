@@ -8,7 +8,6 @@ FactoryGirl.define do
     question "Am I Cooler Than Gerard?"
     button1 "Yes I am!"
     button2 "No I'm Not"
-    origin_poll 1
     page_views 0
     response1 "You are wrong."
     response2 "You are correct."

@@ -2,6 +2,7 @@ class Poll < ActiveRecord::Base
   attr_accessible :button1, :button2, :image_id, :origin_poll, :question, :response1, :response2, :user_id, :status, :identifier, :page_views
   belongs_to :image
   belongs_to :user
+  has_many :favorites
 
   def to_param
   	"#{identifier}".parameterize

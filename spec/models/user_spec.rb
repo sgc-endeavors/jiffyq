@@ -6,6 +6,6 @@ describe User do
   end
 
   it { should have_many(:polls) }
-
+  it { should have_many(:favorites) }
   it { should have_many(:images) }
 end

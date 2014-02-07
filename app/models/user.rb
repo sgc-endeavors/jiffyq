@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :polls
   has_many :images
+  has_many :favorites
 end

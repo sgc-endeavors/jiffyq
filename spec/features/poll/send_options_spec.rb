@@ -41,14 +41,4 @@ describe "Poll#Send_Options_page" do
 			end
 		end
 	end
-
-	context "visitor has not signed in" do
-		before(:each) do
-			visit send_options_path(poll_id: poll_to_send.id)
-		end		
-
-		it "routes the user to the sign in page" do
-			current_path.should == new_user_session_path
-		end
-	end
 end

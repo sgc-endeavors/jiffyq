@@ -51,8 +51,8 @@ describe "Image#Index_page" do
 			visit images_path
 		end
 
-		it "routes the user to the landing_page" do
-			current_path.should == landing_page_path
+		it "routes the user to the home_page" do
+			current_path.should == home_path
 		end
 	end
 

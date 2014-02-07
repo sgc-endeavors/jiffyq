@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   
-  before_filter :authenticate_user!, except: [ :landing_page, :show, :about, :legal ]
+  before_filter :authenticate_user!, except: [ :home, :show, :about, :legal, :send_options ]
 
   def about
 
@@ -11,9 +11,9 @@ class PollsController < ApplicationController
 
  end
 
-  def landing_page
+  def home
 
-    render :landing_page
+    render :home
   end
 
   def send_options
@@ -29,26 +29,25 @@ class PollsController < ApplicationController
 
   def new
     
-    if params[:image_id] != nil || params[:origin_id] != nil
+    if params[:image_id] != nil #|| params[:origin_id] != nil
      
       @new_poll = Poll.new
       @new_poll.image_id = params[:image_id]
       @new_poll.button1 = "Yes"
       @new_poll.button2 = "No"
       @new_poll.user_id = current_user.id
-      #@new_poll.origin_poll = Poll.last.origin_poll.to_i + 1  
-      #@new_image = params[:key]
-      if params[:origin_id] 
-        params[:forward] ? @type = "forward" : @type = "reply"
-        existing_poll = Poll.find(params[:origin_id].to_i)
-        @new_poll.question = existing_poll.question
-        @new_poll.origin_poll = existing_poll.origin_poll
-        @new_poll.button1 = existing_poll.button1
-        @new_poll.button2 = existing_poll.button2
-        @new_poll.response1 = existing_poll.response1
-        @new_poll.response2 = existing_poll.response2
-        @new_poll.image_id = existing_poll.image_id     
-      end
+      
+      # if params[:origin_id] 
+      #   params[:forward] ? @type = "forward" : @type = "reply"
+      #   existing_poll = Poll.find(params[:origin_id].to_i)
+      #   @new_poll.question = existing_poll.question
+      #   @new_poll.origin_poll = existing_poll.origin_poll
+      #   @new_poll.button1 = existing_poll.button1
+      #   @new_poll.button2 = existing_poll.button2
+      #   @new_poll.response1 = existing_poll.response1
+      #   @new_poll.response2 = existing_poll.response2
+      #   @new_poll.image_id = existing_poll.image_id     
+      # end
       
     else
       redirect_to new_image_path and return  
@@ -62,10 +61,10 @@ class PollsController < ApplicationController
     new_poll.page_views = 0
     new_poll.save!
 
-    if new_poll.origin_poll == nil
-      new_poll.origin_poll = new_poll.id
-    end
-    new_poll.save!
+    # if new_poll.origin_poll == nil
+    #   new_poll.origin_poll = new_poll.id
+    # end
+    # new_poll.save!
     
     redirect_to poll_path(new_poll, anchor: "view-line")
   end

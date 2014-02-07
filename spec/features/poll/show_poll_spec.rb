@@ -108,9 +108,17 @@ describe "Poll#Show_page" do
 						should have_content("#{sent_poll.response1}")
 						should have_link("Forward")
 						should have_link("Create Your Own")
+						should have_link("Add to Favorites")
 						should have_link("Report a Problem")
 					end
+				
+					context "recipient has NOT already saved the poll as a favorite" do
+						before(:each) { click_on "#{sent_poll.button1}" }
+						it { should have_link("Add to Favorites") }
+					end
 				end
+
+
 
 				context "poll recipient clicks on 'button2' " do		
 					it "shows response2" do
@@ -118,6 +126,7 @@ describe "Poll#Show_page" do
 						should have_content("#{sent_poll.response2}")
 						should have_link("Forward")
 						should have_link("Create Your Own")
+						should have_link("Add to Favorites")
 					end
 				end
 
@@ -127,10 +136,66 @@ describe "Poll#Show_page" do
 					context "poll recipient pressed 'Forward'" do
 						before(:each) { click_on "Forward" }
 
-						it "routes the user to the 'login' page" do
-							current_path.should == new_user_session_path 
+						it "routes the user to the 'send_options' page" do
+							current_path.should == send_options_path 
 						end
 					end
+
+					context "poll recipient signs in and presses 'Add to Favorites'" do
+						let(:user) { FactoryGirl.create(:user)}
+						before(:each) do 
+							sign_in_as_existing_user(user)
+							visit poll_path(sent_poll)
+							click_on "#{sent_poll.button1}"							
+							click_on "Add to Favorites" 
+						end
+
+						context "recipient has already saved the poll as a favorite" do
+							before(:each) do
+								FactoryGirl.create(:favorite, user_id: user.id, poll_id: sent_poll.id)
+							  visit poll_path(sent_poll)
+							  click_on "#{sent_poll.button1}"
+							end
+							it { should_not have_link("Add to Favorites") }
+						end	
+
+
+
+
+						context "recipient has NOT already saved the poll as a favorite" do
+
+							it "saves the poll as the user's favorite" do
+								favorite = Favorite.last
+								favorite.user_id.should == user.id
+								favorite.poll_id.should == sent_poll.id
+							end
+							
+							it "routes the user back to the index page" do
+								current_path.should == polls_path
+							end
+						end
+					end
+
+					context "poll recipient has not signed in and presses 'Add to Favorites'" do
+						before(:each) do 
+							click_on "Add to Favorites" 
+						end
+
+						it "routes the user back to the sign_in page" do
+							current_path.should == new_user_session_path
+						end
+
+
+					end
+
+
+
+
+
+
+
+
+
 				end
 			end
 		end

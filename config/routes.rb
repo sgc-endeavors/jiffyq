@@ -1,6 +1,10 @@
 Ometer::Application.routes.draw do
   
-  root :to => "polls#landing_page"
+  get "favorites/create"
+
+  get "favorites/destroy"
+
+  root :to => "polls#home"
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -10,9 +14,9 @@ Ometer::Application.routes.draw do
 
   
 
-  resources :polls, :images, :complaints, :problems
+  resources :polls, :images, :complaints, :problems, :favorites
 
-  get "/landing_page" => "polls#landing_page", as: "landing_page"
+  get "/home" => "polls#home", as: "home"
 
   get "/send_options" => "polls#send_options", as: "send_options"
 

@@ -7,6 +7,7 @@ describe Poll do
 
   it { should belong_to(:image) }
   it { should belong_to(:user) }
+  it { should have_many(:favorites) }
 
   #DESTROY RELATED IMAGE - identifies whether the image associated w/ the poll should be destroyed.
   it { should respond_to(:destroy_related_image) }

@@ -9,8 +9,8 @@ describe "Poll#Index_page" do
 		before(:each) do
 			sign_in_as_existing_user(user)
 			@original_poll = FactoryGirl.create(:poll, user_id: user.id)
-			@new_poll1 = FactoryGirl.create(:poll, origin_poll: @original_poll.id)
-			@new_poll2 = FactoryGirl.create(:poll, origin_poll: @original_poll.id) 
+			@new_poll1 = FactoryGirl.create(:poll)
+			 
 			visit polls_path
 		end
 

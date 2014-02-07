@@ -32,10 +32,6 @@ describe "Poll#New_page" do
 			it "creates a unique string identifier in place of id for use in URL" do
 				Poll.last.identifier.length.should == 8
 			end
-
-			it "assigns the draft poll's 'id' as 'origin_poll' value to identify it as the first poll in a new string of polls" do
-				Poll.last.origin_poll.should == Poll.last.id
-			end
 		end
 	end
 
@@ -47,28 +43,6 @@ describe "Poll#New_page" do
 
 		it "routes the user back to the new_image_path" do
 			current_path.should == new_image_path
-		end
-	end
-
-	context "poll recipient logs in and clicks 'Forward' to forward an existing poll" do
-		before(:each) do
-			sign_in_as_existing_user(existing_poll.user)
-			visit new_poll_path(origin_id: existing_poll.id, type: "existing")
-		end
-	
-		#it should have an image of the image just uploaded  <--- How to test?
-		it { should have_field("poll_question", with: existing_poll.question)}
-		it { should have_field("poll_button1", with: existing_poll.button1)}
-		it { should have_field("poll_button2", with: existing_poll.button2)}
-		it { should have_field("poll_response1", with: existing_poll.response1)}
-		it { should have_field("poll_response2", with: existing_poll.response2)}
-
-		context "author clicks 'Preview'" do
-			before(:each) { click_on "Preview" }
-
-			it "saves the original poll's 'origin_poll' value in the forwarded poll's 'origin_poll' field" do
-				Poll.last.origin_poll.should == existing_poll.origin_poll
-			end
 		end
 	end
 end
