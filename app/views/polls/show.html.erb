@@ -45,12 +45,11 @@
 
 <% if @poll.user.is_admin? && @poll.status == "sent"%>
 
-  <div style="display:inline-block;vertical-align:top"> 
     <div class="fb-like" data-href="www.jiffypoll.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-
-    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <br><br>
+   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jiffypoll.com/polls/<%=@poll.identifier%>" data-text="<%=@poll.question%> Answer at: ">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  </div>
+
 <%end%>
 
 <br><br>
