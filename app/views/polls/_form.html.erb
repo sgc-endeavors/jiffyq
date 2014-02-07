@@ -3,21 +3,21 @@
 	<%=image_tag @poll.image.s3_image_loc_url.to_s %> 
 
 	<%=f.label :question, "Question You're Asking"%>
-	<%=f.text_field :question, placeholder: "Am I Cooler than Seth?"%> <br>
+	<%=f.text_area :question, rows: 1, placeholder: "Am I Cooler than Seth?"%> <br>
 
 	<div class="control-group success">
 	<%=f.label :button1, "Green Answer Button"%>
-	<%=f.text_field :button1, placeholder: "Yes I Am"%>
+	<%=f.text_area :button1, rows: 1,  placeholder: "Yes I Am"%>
 
 	<%=f.label :response1, "Response When Green Button Pushed"%>
-	<%=f.text_field :response1, placeholder: "Sorry, not today.  Guess Again."%>
+	<%=f.text_area :response1, rows: 2, placeholder: "Sorry, not today.  Guess Again."%>
 	</div>
 	<div class="control-group error">
 	<%=f.label :button2, "Red Answer Button"%>
-	<%=f.text_field :button2, placeholder: "No I'm Not"%>
+	<%=f.text_area :button2, rows: 1, placeholder: "No I'm Not"%>
 
 	<%=f.label :response2, "Response When Red Button Pushed"%>
-	<%=f.text_field :response2, placeholder: "Very Smart"%>
+	<%=f.text_area :response2, rows:2, placeholder: "Very Smart"%>
 	</div>
 
 	<%=submit_tag "Preview", class: "btn btn-small btn-primary"%>
