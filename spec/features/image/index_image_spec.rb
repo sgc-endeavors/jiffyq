@@ -18,10 +18,6 @@ describe "Image#Index_page" do
 			should have_content("List of Images")
 		end
 
-		xit "shows the image's storage path" do
-			should have_content("MyString")
-		end
-
 		it "shows the image's id " do
 			should have_content(@image.id)
 		end
@@ -29,17 +25,6 @@ describe "Image#Index_page" do
 		it "has a delete button" do
 			should have_link("X")
 		end
-	
-		context "user presses the delete button" do
-			before(:each) { click_on "X" }
-
-			xit "deletes the selected_image" do
-				should_not have_content(@image.id)
-
-			end
-
-		end
-
 	end
 
 

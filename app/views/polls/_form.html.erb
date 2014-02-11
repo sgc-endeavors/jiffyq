@@ -1,3 +1,10 @@
+
+<%if flash[:error]%>
+	<div class="alert alert-error">
+		<%= flash[:error]%>
+	</div>
+<%end%>
+
 <%=form_for(@poll, html: { multipart: true }) do |f|%>
 
 	<%=image_tag @poll.image.s3_image_loc_url.to_s %> 
@@ -17,7 +24,7 @@
 	<%=f.text_area :button2, rows: 1, placeholder: "No I'm Not"%>
 
 	<%=f.label :response2, "Response When Red Button Pushed"%>
-	<%=f.text_area :response2, rows:2, placeholder: "Very Smart"%>
+	<%=f.text_area :response2, rows:2, placeholder: "You're smarter than you look!"%>
 	</div>
 
 	<%=submit_tag "Preview", class: "btn btn-small btn-primary"%>

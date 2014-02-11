@@ -1,21 +1,15 @@
 <h3>My Favorites</h3>
 
 <% @favorites.each do |favorite|%>
-
 	<p>
-	
-			<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
-			(<%=favorite.poll.page_views.to_i%>)
+		<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
+		(<%=favorite.poll.page_views.to_i%>)
 
-			<%=link_to "X", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
-	
+		<%=link_to "Remove", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
 	</p>
-
 <% end %>
 
 <hr />
-
-
 
 <h3>My Polls</h3>
 
@@ -25,7 +19,7 @@
 	<%= link_to poll.question, poll_path(poll) %> 
 	(<%=poll.page_views.to_i%>)
 	
-	<%=link_to "X", poll_path(poll.image_id, identifier: poll.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+	<%=link_to "Delete", poll_path(poll.image_id, identifier: poll.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
 	</p>
 
 <% end %>

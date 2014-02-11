@@ -3,6 +3,9 @@ class Poll < ActiveRecord::Base
   belongs_to :image
   belongs_to :user
   has_many :favorites
+  validates_length_of :response1, maximum: 500, message: "Please keep responses to less than 500 characters."
+  validates_length_of :response2, maximum: 500, message: "Please keep responses to less than 500 characters."
+  
 
   def to_param
   	"#{identifier}".parameterize
