@@ -85,6 +85,7 @@ class PollsController < ApplicationController
     user = User.find(current_user.id)
     deleted_poll = user.polls.find_by_identifier(params[:identifier])  
     deleted_poll.destroy_related_image(params[:id])
+    deleted_poll.destroy_related_favorite(deleted_poll.id)
     deleted_poll.destroy
     redirect_to polls_path and return
   end

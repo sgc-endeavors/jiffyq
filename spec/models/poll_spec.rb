@@ -24,6 +24,33 @@ describe Poll do
   	end
   end
 
+  #DESTROY RELATED FAVORITE - destroy all 'favorites' associated w/ the deleted poll.
+  it { should respond_to(:destroy_related_favorite) }
+
+  describe "#destroy_related_favorite" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      @poll = FactoryGirl.create(:poll, user_id: @user.id)
+      @favorite = FactoryGirl.create(:favorite, poll_id: @poll.id)
+    end
+    
+    it "deletes the related favorite" do
+      @poll.destroy_related_favorite(@poll.id)
+      Favorite.where(poll_id: @poll.id).first.should == nil
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
  	#COUNT PAGE VIEWS - counts the number of times a page is viewed
  	it { should respond_to(:count_page_views) }
 

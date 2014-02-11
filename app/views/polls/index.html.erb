@@ -1,15 +1,17 @@
-<h3>My Favorites</h3>
+<%unless @favorites == [] %>
+	<h3>My Favorites</h3>
+	<small>If a person deletes a poll that they created, it will no longer show up as one of your favorites</small>
+	<% @favorites.each do |favorite|%>
+		<p>
+			<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
+			(<%=favorite.poll.page_views.to_i%>)
 
-<% @favorites.each do |favorite|%>
-	<p>
-		<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
-		(<%=favorite.poll.page_views.to_i%>)
-
-		<%=link_to "Remove", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
-	</p>
-<% end %>
+			<%=link_to "Remove", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+		</p>
+	<% end %>
 
 <hr />
+<%end%>
 
 <h3>My Polls</h3>
 

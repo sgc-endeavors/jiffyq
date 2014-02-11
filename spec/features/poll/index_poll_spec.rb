@@ -9,6 +9,7 @@ describe "Poll#Index_page" do
 		before(:each) do
 			sign_in_as_existing_user(user)
 			@original_poll = FactoryGirl.create(:poll, user_id: user.id)
+			original_favorite = FactoryGirl.create(:favorite, poll_id: @original_poll.id)
 			@new_poll1 = FactoryGirl.create(:poll, question:  "Am I more dumber than Gerard?")
 			@new_favorite = FactoryGirl.create(:favorite, poll_id: @new_poll1.id, user_id: user.id)
 			 
@@ -27,9 +28,6 @@ describe "Poll#Index_page" do
 			should have_link("Remove")
 		end
 
-
-
-
 		context "user presses the 'Remove' button" do
 			before(:each) { click_on "Remove" }
 		
@@ -42,14 +40,6 @@ describe "Poll#Index_page" do
 				current_path.should == polls_path				
 			end
 		end
-
-
-
-
-
-
-
-
 
 		it "has a header called 'My Questions'" do
 			should have_content("My Polls")

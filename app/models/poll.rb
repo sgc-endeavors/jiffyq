@@ -18,6 +18,13 @@ class Poll < ActiveRecord::Base
     end 
   end
 
+  def destroy_related_favorite(poll_id)
+    favorites = Favorite.where(poll_id: poll_id).all
+    favorites.each do |favorite|
+      favorite.destroy
+    end
+  end
+
   def count_page_views(response, current_user)
   	if self.user != current_user && response == 0
   		self.page_views = self.page_views.to_i + 1
