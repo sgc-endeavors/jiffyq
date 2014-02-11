@@ -25,20 +25,19 @@
         <%end%>
       </div>
       <br>
-      <p><b><i>
-
+      <p>
 
         
         <%if @response == 1%>
           <%other_button_color = "red"%>
           <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
-          <%=@poll.response1%><br><br><small style="color:grey"><%=next_step_response%></small>
+          <b><%=@poll.response1%></b><br><br><i><small style="color:grey"><%=next_step_response%></small></i>
         <%elsif @response == 2%>
           <%other_button_color = "green"%>          
         <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
-          <%=@poll.response2%><br><br><small style="color:grey"><%=next_step_response%></small>
+          <b><%=@poll.response2%></b><br><br><i><small style="color:grey"><%=next_step_response%></small></i>
         <%end%>
-      </p></b></i>
+      </p></b>
 
     </div>
   </li>
