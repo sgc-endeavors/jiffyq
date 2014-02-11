@@ -4,37 +4,39 @@
 <ul class="thumbnails">
   <li class="span12">
     <div class="thumbnail" align="middle">
-      <h3 id="1" >JiffyPoll of the Day</h3>
+      <h4 id="1" ><%="#{@poll.question}"%></h4>
       <%if @poll.image%>
         <%=image_tag @poll.image.s3_image_loc_url.to_s, id: "2" %>
       <%else%>
       <%=image_tag "/the_bomb.png", id: "2"%>
       <%end%>
+      <br>
 
-      <h4><%="#{@poll.question}"%></h4>
-
-      <%if @response == 0%>
-        <div style= "line-height: 2.3" >		
-          <a class="btn btn-small btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-  				<a class="btn btn-small btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
-        </div>
-      <%elsif @response == 1%>
-        <div style= "line-height: 2.3" >    
-          <a class="btn btn-small disabled" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-          <a class="btn btn-small btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
-        </div>
-      <%elsif @response == 2%>
-        <div style= "line-height: 2.3" >    
-          <a class="btn btn-small btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-          <a class="btn btn-small disabled"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
-        </div>
-      <%end%>
-
-      <p><b><i>
-        <%if @response == 1%>
-          <%=@poll.response1%>
+      <div style= "width:212px" >   
+        <%if @response == 0%>
+          <a class="btn btn-small btn-block btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+  			 <a class="btn btn-small btn-block btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+        <%elsif @response == 1%>
+          <a class="btn btn-small btn-block disabled" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small btn-block btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
         <%elsif @response == 2%>
-          <%=@poll.response2%>
+          <a class="btn btn-small btn-block btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small btn-block disabled"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+        <%end%>
+      </div>
+      <br>
+      <p><b><i>
+
+
+        
+        <%if @response == 1%>
+          <%other_button_color = "red"%>
+          <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
+          <%=@poll.response1%><br><br><small style="color:grey"><%=next_step_response%></small>
+        <%elsif @response == 2%>
+          <%other_button_color = "green"%>          
+        <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
+          <%=@poll.response2%><br><br><small style="color:grey"><%=next_step_response%></small>
         <%end%>
       </p></b></i>
 
