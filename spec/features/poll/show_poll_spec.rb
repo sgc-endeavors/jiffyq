@@ -29,7 +29,7 @@ describe "Poll#Show_page" do
 			before(:each) { click_on "Save & Send" }
 			it "routes the user to the 'send options' view'" do
 				current_path.should == send_options_path  ##### We cant test the full path which would be send_options_path(poll_id: drafted_poll.id).  How do you do this?
-				should have_content("Send Options")
+				should have_content("Share Your JiffyPoll")
 			end			
 			
 			it "saves the poll status to sent" do

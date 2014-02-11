@@ -12,8 +12,9 @@ describe "Poll#Send_Options_page" do
 			visit send_options_path(poll_id: poll_to_send.id)
 		end
 
-		it { should have_link("Send as Email") }
-		it { should have_content("Send as Text") }
+		it { should have_link("Email") }
+		it { should have_content("Text") }
+		it { should have_content("Social Media") }
 		it { should have_link("Return to Question") }
 		it { should have_link("Create Another")}
 

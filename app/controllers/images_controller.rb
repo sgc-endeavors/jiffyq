@@ -2,13 +2,6 @@ class ImagesController < ApplicationController
   
   before_filter :authenticate_user!
 
-
-  def index
-  @images = Image.all
-  authorize! :manage, Image  
-  render :index
-  end
-
   def new 
     @uploader = Image.new#.s3_image_loc
   end
@@ -24,7 +17,4 @@ class ImagesController < ApplicationController
     end
   end
 
-  def destroy
-  
-  end
 end
