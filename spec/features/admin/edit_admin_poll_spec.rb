@@ -5,25 +5,23 @@ describe "#Admin_Edit_Poll" do
 	subject{ page }
 
 	context "administrator visits the site and logs in" do
+		let(:admin_user) { FactoryGirl.create(:admin_user) }
+		let(:image) { FactoryGirl.create(:image) }
+
 		before(:each) do
-			visit admin_root_path
-			admin_user = FactoryGirl.create(:admin_user)
-			image = FactoryGirl.create(:image)
-			@poll = FactoryGirl.create(:poll, image_id: image.id, user_id: image.user_id)
-			fill_in "admin_user_email", with: admin_user.email
-		  fill_in "admin_user_password", with: admin_user.password
-		  click_button "Login"
+			log_in_as_admin(admin_user)
+			@poll = FactoryGirl.create(:poll, image_id: image.id, user_id: image.user_id)			
 		  visit admin_polls_path
 		end
 
-		it "includes a list of the polls" do
+		it "includes a list of the poll questions" do
 			should have_content(@poll.question)
 		end
 
 		context "admin clicks on 'View'" do
 			before(:each) { click_on "View" }
 
-			it "routes the admin to the 'show' page and shows the poll's question" do
+			it "routes the admin to the 'admin_show' page and shows the poll's details" do
 				current_path.should == admin_poll_path(@poll)
 				should have_content(@poll.question)
 			end
@@ -32,7 +30,7 @@ describe "#Admin_Edit_Poll" do
 		context "admin clicks on 'Edit'" do
 			before(:each) { click_on "Edit" }
 
-			it "routes the admin to the 'edit' page and shows the poll's question" do
+			it "routes the admin to the 'admin_edit' page and shows the poll's details" do
 				current_path.should == edit_admin_poll_path(@poll)
 				should have_content("Edit Poll")
 			end
@@ -59,26 +57,9 @@ describe "#Admin_Edit_Poll" do
 				current_path.should == admin_polls_path
 				should_not have_content(@poll.question)
 			end
-
-			context "their is a a corresponding image that must be deleted" do
-				it "deletes the image as well if the author of the poll is also the image owner" do
-					expect {Image.find(@poll.image_id)}.to raise_error(ActiveRecord::RecordNotFound)
-				end
+			it "deletes the image" do
+				expect {Image.find(@poll.image_id)}.to raise_error(ActiveRecord::RecordNotFound)
 			end
-
-			context "their is not a corresponding image that must be deleted" do
-				before(:each) do
-					@image = FactoryGirl.create(:image)
-					@poll.image_id = @image.id
-					@poll.save!
-				end
-
-				it "does NOT delete the image" do
-					Image.find(@poll.image_id).id.should == @image.id
-				end
-			end
-
-
 		end
 	end
 end

@@ -31,6 +31,12 @@ def sign_in_as_existing_user(existing_user)
   click_button "Login"
 end
 
+def log_in_as_admin(admin_user)
+  visit admin_root_path
+  fill_in "admin_user_email", with: admin_user.email
+  fill_in "admin_user_password", with: admin_user.password
+  click_button "Login"
+end
 
 
 

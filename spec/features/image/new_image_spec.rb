@@ -25,7 +25,14 @@ describe "Image#New_page" do
 				click_on "Upload"
 				Image.last.user_id.should == user.id
 			end
-
 		end
 	end
+
+	context "visitor does NOT login and visits the '/images/new' URL" do
+		before(:each) { visit new_image_path }
+		it "routes the visitor to the user 'login' page" do
+			current_path.should == new_user_session_path
+		end
+	end
+
 end

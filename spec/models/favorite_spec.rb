@@ -5,7 +5,6 @@ describe Favorite do
   	FactoryGirl.create(:favorite).should be_valid
   end
 
-
   it { should belong_to(:poll) }
   it { should belong_to(:user) }
 end

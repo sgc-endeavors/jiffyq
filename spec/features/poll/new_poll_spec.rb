@@ -1,16 +1,14 @@
 require "spec_helper"
 
 describe "Poll#New_page" do 
-	let(:existing_poll) {FactoryGirl.create(:poll)}
-	let(:new_poll) { FactoryGirl.build(:poll)}
-	
+	let(:existing_poll) { FactoryGirl.create(:poll) }
+	let(:new_poll) { FactoryGirl.build(:poll) }
+	before(:each) { sign_in_as_existing_user(new_poll.user) }
+
 	subject{ page }
 
-	context "user creates a new poll after first creating an image" do
-		before(:each) do
-			sign_in_as_existing_user(new_poll.user)
-			visit new_poll_path(image_id: new_poll.image.id)
-		end
+	context "user creates a new poll after having first created an image" do
+		before(:each) { visit new_poll_path(image_id: new_poll.image.id) }
 
 		#it should have an image of the image just uploaded  <--- How to test?
 		it { should have_field("poll_question") }
@@ -36,11 +34,8 @@ describe "Poll#New_page" do
 	end
 
 	context "user visits new_poll_path directly without first creating an image" do
-		before(:each) do
-			sign_in_as_existing_user(new_poll.user)
-			visit new_poll_path
-		end
-
+		before(:each) { visit new_poll_path }
+	
 		it "routes the user back to the new_image_path" do
 			current_path.should == new_image_path
 		end

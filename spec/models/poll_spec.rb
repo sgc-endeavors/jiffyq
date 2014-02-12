@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Poll do
+  before(:each) do
+    @user = FactoryGirl.create(:user)
+    @poll = FactoryGirl.create(:poll, user_id: @user.id)
+  end
+
   it "has a valid factory" do
   	FactoryGirl.create(:poll).should be_valid
   end
@@ -12,12 +17,7 @@ describe Poll do
   #DESTROY RELATED IMAGE - identifies whether the image associated w/ the poll should be destroyed.
   it { should respond_to(:destroy_related_image) }
 
-  describe "#destroy_related_image" do
-  	before(:each) do
-  		@user = FactoryGirl.create(:user)
-  		@poll = FactoryGirl.create(:poll, user_id: @user.id)
-  	end
-  	
+  describe "#destroy_related_image" do	
   	it "deletes the related image" do
   		@poll.destroy_related_image(@poll.image_id)
   		expect {Image.find(@poll.image_id)}.to raise_error(ActiveRecord::RecordNotFound)
@@ -29,8 +29,6 @@ describe Poll do
 
   describe "#destroy_related_favorite" do
     before(:each) do
-      @user = FactoryGirl.create(:user)
-      @poll = FactoryGirl.create(:poll, user_id: @user.id)
       @favorite = FactoryGirl.create(:favorite, poll_id: @poll.id)
     end
     

@@ -4,7 +4,6 @@ FactoryGirl.define do
   factory :poll do
     association :image
     association :user
-    #sequence(:question) { |i| "Am I Cooler Than Gerard?-#{i}" }
     question "Am I Cooler Than Gerard?"
     button1 "Yes I am!"
     button2 "No I'm Not"

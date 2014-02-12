@@ -19,10 +19,6 @@ ActiveAdmin.register Poll do
 	end
 
 	controller do
-
-	# 	def new
-	# 		redirect_to admin_polls_path
-	# 	end
 		def show
 			@poll = Poll.where(identifier: params[:id]).first
 		end
@@ -38,13 +34,10 @@ ActiveAdmin.register Poll do
 		def destroy
 			@poll = Poll.where(identifier: params[:id]).first
 			if Image.where(id: @poll.image_id).first != nil
-				if @poll.user_id == @poll.image.user_id 
-					@poll.image.destroy
-				end
+				@poll.image.destroy
 			end
 			@poll.destroy
 			redirect_to admin_polls_path
 		end
 	end
-
 end

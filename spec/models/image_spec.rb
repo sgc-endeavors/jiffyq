@@ -6,7 +6,6 @@ describe Image do
   end
 
   it { should have_many(:polls) }
-
   it { should belong_to(:user) }
 
 end
