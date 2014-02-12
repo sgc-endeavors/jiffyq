@@ -55,7 +55,6 @@
 
 <br><br>
 
-<br>
 
 <% if @poll.status != "sent"%>
 
@@ -99,10 +98,12 @@
   <%=link_to "Create Your Own",  new_image_path%> 
   <%if user_signed_in?%>
     <%if Favorite.where(poll_id: @poll.id).where(user_id: current_user.id).first == nil%>
-    | <%=link_to "Add to Favorites",  favorites_path(identifier: @poll.identifier), method: :post%>
+    <br><br>
+    <%=link_to "Add to Favorites",  favorites_path(identifier: @poll.identifier), method: :post%>
     <%end%>
   <%else%>
-    | <%=link_to "Add to Favorites",  new_user_session_path%>
+    <br><br>
+    <%=link_to "Add to Favorites",  new_user_session_path%>
   <%end%>
 	
 	<%end%>

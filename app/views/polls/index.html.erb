@@ -1,6 +1,6 @@
 <%unless @favorites == [] %>
 	<h3>My Favorites</h3>
-	<small>If a person deletes a poll that they created, it will no longer show up as one of your favorites</small>
+
 	<% @favorites.each do |favorite|%>
 		<p>
 			<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
@@ -10,6 +10,7 @@
 		</p>
 	<% end %>
 
+	<small>Note: If a person deletes a poll that they created, it will no longer show up as one of your favorites</small>
 <hr />
 <%end%>
 
