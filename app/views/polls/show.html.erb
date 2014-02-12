@@ -99,11 +99,11 @@
   <%if user_signed_in?%>
     <%if Favorite.where(poll_id: @poll.id).where(user_id: current_user.id).first == nil%>
     <br><br>
-    <%=link_to "Add to Favorites",  favorites_path(identifier: @poll.identifier), method: :post%>
+    <%=link_to "Add to Favorites", favorites_path(identifier: @poll.identifier), method: :post%>
     <%end%>
   <%else%>
     <br><br>
-    <%=link_to "Add to Favorites",  new_user_session_path%>
+    <%=link_to "Add to Favorites", favorites_path(identifier: @poll.identifier), method: :post%>
   <%end%>
 	
 	<%end%>
