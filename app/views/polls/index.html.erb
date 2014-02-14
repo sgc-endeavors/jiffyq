@@ -1,13 +1,16 @@
 <%unless @favorites == [] %>
 	<h3>My Favorites</h3>
 
-	<% @favorites.each do |favorite|%>
-		<p>
-			<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
-			(<%=favorite.poll.page_views.to_i%>)
-
+	<% @favorites.each do |favorite|%>	
+		<div class="nails">
+      <a href=<%=poll_path(favorite.poll)%>>
+      	<img style="height: 25px; border: 1px solid #A8B2B5" src=<%=favorite.poll.image.s3_image_loc_url.to_s%>> 
+      	<%= link_to favorite.poll.question, poll_path(favorite.poll) %> 
+				(<%=favorite.poll.page_views.to_i%>)
+			</a>
 			<%=link_to "Remove", favorite_path(favorite), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
-		</p>
+		</div>
+		<br>
 	<% end %>
 
 	<small>Note: If a person deletes a poll that they created, it will no longer show up as one of your favorites</small>
@@ -18,12 +21,16 @@
 
 <% @polls.each do |poll|%>
 
-	<p>
-	<%= link_to poll.question, poll_path(poll) %> 
+	<div class="nails">
+		<a href=<%=poll_path(poll)%>>
+      	<img style="height: 25px; border: 1px solid #A8B2B5" src=<%=poll.image.s3_image_loc_url.to_s%>> 
+		<%= link_to poll.question, poll_path(poll) %> 
 	(<%=poll.page_views.to_i%>)
+</a>
 	
-	<%=link_to "Delete", poll_path(poll.image_id, identifier: poll.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
-	</p>
+		<%=link_to "Delete", poll_path(poll.image_id, identifier: poll.identifier), method: :delete, confirm: "Are You Sure?", class: "btn btn-mini btn-danger" %>
+	</div>
+	<br>
 
 <% end %>
 
