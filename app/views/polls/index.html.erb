@@ -6,7 +6,7 @@
 		<div class="nails">
       <a href=<%=poll_path(favorite.poll)%>>
       	<img style="height: 25px; border: 1px solid #A8B2B5" src=<%=favorite.poll.image.s3_image_loc_url.to_s%>> 
-      	<%= link_to truncate(favorite.poll.question, length: 57), poll_path(favorite.poll) %> 
+      	<%= link_to truncate(favorite.poll.question, length: 62), poll_path(favorite.poll) %> 
 				(<%=favorite.poll.page_views.to_i%>)
 			</a>
 			&nbsp;&nbsp;
@@ -28,7 +28,7 @@
 	<div class="nails">
 		<a href=<%=poll_path(poll)%>>
       	<img style="height: 25px; border: 1px solid #A8B2B5" src=<%=poll.image.s3_image_loc_url.to_s%>> 
-		<%= link_to truncate(poll.question, length: 57), poll_path(poll) %> 
+		<%= link_to truncate(poll.question, length: 62), poll_path(poll) %> 
 	(<%=poll.page_views.to_i%>)
 </a>
 	
@@ -42,5 +42,5 @@
 <% end %>
 
 <hr />
-<i><small style="color:grey">The numbers in parentheses represents the number of times the JiffyQ question has been viewed, excluding the author's views.</small></i>
+<i><small style="color:grey">The number in parentheses represents the number of times the JiffyQ question has been viewed, excluding the author's views.</small></i>
 

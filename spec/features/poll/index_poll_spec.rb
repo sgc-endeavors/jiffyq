@@ -25,11 +25,11 @@ describe "Poll#Index_page" do
 			end
 
 			it "has a button to remove the poll as a favorite" do
-				should have_link("x")
+				should have_link("remove")
 			end
 
 			context "user presses the 'Remove' button to remove the question as a favorite" do
-				before(:each) { click_on "x" }
+				before(:each) { click_on "remove" }
 			
 				it "removes the poll as a favorite" do
 					should_not have_content("Am I more dumber than Gerard?")
@@ -73,11 +73,11 @@ describe "Poll#Index_page" do
 			end
 
 			it "has a delete button" do
-				should have_link("X")
+				should have_link("delete")
 			end
 
 			context "user presses the delete button" do
-				before(:each) { click_on "X" }
+				before(:each) { click_on "delete" }
 			
 				it "removes the poll" do
 					should_not have_content("Am I Cooler Than Gerard?")

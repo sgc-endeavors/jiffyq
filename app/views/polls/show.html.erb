@@ -14,28 +14,28 @@
 
       <div style= "width:212px" >   
         <%if @response == 0%>
-          <a class="btn btn-small btn-block btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-  			 <a class="btn btn-small btn-block btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+          <a class="btn btn-small btn-block btn-success" data-disable-with="..." href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+  			 <a class="btn btn-small btn-block btn-danger"  data-disable-with="..." href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
         <%elsif @response == 1%>
-          <a class="btn btn-small btn-block disabled" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-          <a class="btn btn-small btn-block btn-danger"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+          <a class="btn btn-small btn-block disabled" data-disable-with="..." href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small btn-block btn-danger"  data-disable-with="..." href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
         <%elsif @response == 2%>
-          <a class="btn btn-small btn-block btn-success" href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
-          <a class="btn btn-small btn-block disabled"  href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
+          <a class="btn btn-small btn-block btn-success" data-disable-with="..." href=<%=poll_path(@poll, response: 1, anchor: "2")%>><%=@poll.button1%></a>
+          <a class="btn btn-small btn-block disabled"  data-disable-with="..." href=<%=poll_path(@poll, response: 2, anchor: "2")%>><%=@poll.button2%></a>
         <%end%>
       </div>
       <br>
       <p>
 
         
+        <%next_step_response = "For another laugh, press the "%>
+
         <%if @response == 1%>
-          <%other_button_color = "red"%>
-          <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
-          <b><%=@poll.response1%></b><br><br><i><small style="color:grey"><%=next_step_response%></small></i>
+          <%other_button_color = "red button"%>
+          <b><%=@poll.response1%></b><br><br><i><small style="color:grey"><%=next_step_response%></small><small style="color:red"><%=other_button_color%></small></i>
         <%elsif @response == 2%>
-          <%other_button_color = "green"%>          
-        <%next_step_response = "For another laugh, press the #{other_button_color} button"%>
-          <b><%=@poll.response2%></b><br><br><i><small style="color:grey"><%=next_step_response%></small></i>
+          <%other_button_color = "green button"%>          
+          <b><%=@poll.response2%></b><br><br><i><small style="color:grey"><%=next_step_response%></small><small style="color:green"><%=other_button_color%></small></i>
         <%end%>
       </p></b>
 
@@ -46,11 +46,12 @@
 
 <% if @poll.user.is_admin? && @poll.status == "sent"%>
 
-    <div class="fb-like" data-href="http://www.jiffyq.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-    <br><br>
+ 
+    <div class="fb-like" data-href="http://www.jiffyq.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true" style="vertical-align:top"></div>
+    &nbsp;&nbsp;&nbsp;
    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jiffyq.com/polls/<%=@poll.identifier%>" data-text="<%=@poll.question%> Answer at: ">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
+ 
 <%end%>
 
 <br><br>
