@@ -28,7 +28,7 @@ describe "Poll#Index_page" do
 				should have_link("x")
 			end
 
-			context "user presses the 'Remove' button to remove the poll as a favorite" do
+			context "user presses the 'Remove' button to remove the question as a favorite" do
 				before(:each) { click_on "x" }
 			
 				it "removes the poll as a favorite" do
@@ -42,17 +42,17 @@ describe "Poll#Index_page" do
 			end
 		end
 
-		describe "My Polls Section" do
+		describe "My Questions Section" do
 
-			it "has a header called 'My Polls'" do
-				should have_content("My Polls")
+			it "has a header called 'My Questions'" do
+				should have_content("My Questions")
 			end
 
 			it "has links to the user's questions" do
 				should have_link("Am I Cooler Than Gerard?")
 			end
 
-			context "the author visits the 'show' page for his own poll" do
+			context "the author visits the 'show' page for his own question" do
 				before(:each) { visit poll_path(@users_poll) }
 				
 				context "the author visits the index page" do

@@ -59,7 +59,7 @@
 
                   <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
                   <br>
-                  <li><div><%= link_to "My Polls/Faves", polls_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Poll', new_image_path %></div></li><br>
+                  <li><div><%= link_to "My Qs/Faves", polls_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
                   
                   <%if current_user.is_admin?%>
                     <li><div>
