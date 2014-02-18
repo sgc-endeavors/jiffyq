@@ -46,9 +46,9 @@
 
 <% if @poll.user.is_admin? && @poll.status == "sent"%>
 
-    <div class="fb-like" data-href="http://www.jiffypoll.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+    <div class="fb-like" data-href="http://www.jiffyq.com/polls/<%=@poll.identifier%>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
     <br><br>
-   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jiffypoll.com/polls/<%=@poll.identifier%>" data-text="<%=@poll.question%> Answer at: ">Tweet</a>
+   <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.jiffyq.com/polls/<%=@poll.identifier%>" data-text="<%=@poll.question%> Answer at: ">Tweet</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 <%end%>
@@ -83,7 +83,7 @@
 <button type="button" class="btn btn-mini btn-info" data-toggle="collapse" data-target="#demo">?</button>
   <div id="demo" class="collapse out">
     <small>
-      You've just received a JiffyPoll of the Day.  What do you want to do?<br>
+      You've just received a JiffyQ Question.  What do you want to do?<br>
       <ul>
         <li>Go back to work and later curse your friend for wasting your time.</li>
         <li>Share with others?... Share it on Social Media or press Forward.</li>      

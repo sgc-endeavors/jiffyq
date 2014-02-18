@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>JiffyPoll of the Day</title>
+  <title>JiffyQ</title>
   
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,9 +11,9 @@
 
 <%if @poll != nil %>
   <meta property="og:title" content="<%=@poll.question%>"/>
-  <meta property="og:site_name" content="JiffyPoll"/>
-  <meta property="og:url" content="www.jiffypoll.com/polls/<%=@poll.identifier%>"/>
-<meta property="og:description" content="Click image to answer.  JiffyPoll...  helping people measure all things relevant and irrelevant since MMXIV."/>
+  <meta property="og:site_name" content="JiffyQ"/>
+  <meta property="og:url" content="www.jiffyq.com/polls/<%=@poll.identifier%>"/>
+<meta property="og:description" content="Click image to answer.  JiffyQ...  helping people ask all things relevant and irrelevant since MMXIV."/>
   <%if @poll.image%>
     <meta property="og:image" content="<%=@poll.image.s3_image_loc%>"/>
   <%else%>
@@ -50,7 +50,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-th-list"></span>
             </a>
-              <a tabindex=-1 href= <%=home_path(anchor: "1")%> class="brand"> <img style="width: 30px" src="/jiffypoll_logo.png"> JiffyPoll</a>
+              <a tabindex=-1 href= <%=home_path(anchor: "1")%> class="brand"> <img style="width: 30px" src="/jiffypoll_logo.png"> JiffyQ</a>
           
             <div class = "nav-collapse collapse">
               <ul class="nav pull-right">
