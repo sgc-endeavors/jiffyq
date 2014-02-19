@@ -47,7 +47,7 @@ class PollsController < ApplicationController
     new_poll.identifier = SecureRandom.hex(4)
     new_poll.page_views = 0
     if new_poll.save
-      redirect_to poll_path(new_poll, anchor: "view-line") and return
+      redirect_to poll_path(new_poll, anchor: "1") and return
     else
       flash[:error] = "Your response(s) is/are too long.  Keep response length to less than 500 characters"
       @new_poll = Poll.new(params[:poll])
