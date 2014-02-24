@@ -1,3 +1,14 @@
+<%if current_user%>
+	<%= current_user.email%> | 
+	Questions: <%= current_user.polls.count %> |
+	<% count = 0 %>
+	<% current_user.polls.each do |poll| %>
+		<%count += poll.page_views%>
+	<%end%>
+	Times Viewed: <%=count%> 
+
+<%end%>
+
 <%unless @favorites == [] %>
 	<h3>My Favorites</h3>
 

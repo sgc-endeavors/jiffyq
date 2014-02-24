@@ -7,12 +7,24 @@ describe "Poll#Index_page" do
 		let(:user) { FactoryGirl.create(:user)}
 		before(:each) do
 			sign_in_as_existing_user(user)
-			@users_poll = FactoryGirl.create(:poll, user_id: user.id)
+			@users_poll = FactoryGirl.create(:poll, user_id: user.id, page_views: 3)		
 			#original_favorite = FactoryGirl.create(:favorite, poll_id: @original_poll.id)
 			@someone_elses_poll = FactoryGirl.create(:poll, question:  "Am I more dumber than Gerard?")
 			@favorite = FactoryGirl.create(:favorite, poll_id: @someone_elses_poll.id, user_id: user.id)	 
 			visit polls_path
 		end
+
+		describe "Infectious Level" do
+			before(:each) do 
+				FactoryGirl.create(:poll, user_id: user.id, page_views: 5)
+				visit polls_path
+			end
+			it { should have_content("#{user.email}") }
+			it { should have_content("Questions: #{user.polls.count}") }
+			it { should have_content("Times Viewed: 8")}
+		end
+
+		
 
 		describe "Favorites Section" do
 
@@ -59,7 +71,7 @@ describe "Poll#Index_page" do
 					before(:each) { visit polls_path }
 
 					it "does not count the authors visit as a page view" do
-						should have_content("Am I Cooler Than Gerard? (0)")
+						should have_content("Am I Cooler Than Gerard? (3)")
 					end
 				end
 			end

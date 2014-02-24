@@ -7,7 +7,7 @@
         <% if @response == 0 %>
           <%=image_tag @poll.image.s3_image_loc_url.to_s%>
         <%else%>
-          <%=image_tag @poll.image.s3_image_loc_url.to_s, style: "height: 200px" %>
+          <%=image_tag @poll.image.s3_image_loc_url.to_s, style: "max-height: 200px" %>
         <%end%>
       <%else%>
       <%=image_tag "/the_bomb.png", id: "2"%>
