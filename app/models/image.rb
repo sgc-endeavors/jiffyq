@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :s3_image_loc, :image_processed
+  attr_accessible :s3_image_loc, :image_processed, :inactive
   mount_uploader :s3_image_loc, ImageUploader
   has_many :polls
   belongs_to :user

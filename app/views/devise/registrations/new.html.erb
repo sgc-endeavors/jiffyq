@@ -4,11 +4,6 @@
   <%= devise_error_messages! %>
 
 
-  <div>
-    <%= f.check_box :terms, id: "terms" %>
-    I accept the <%=link_to "terms and conditions", legal_path%>
-  </div><br>
-
   <div><%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
 
@@ -16,11 +11,13 @@
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %></div>
+  <%= f.password_field :password_confirmation %></div><br>
 
  
+  <%=link_to "Terms of Use ('Terms')", legal_path%><br><br>
 
-  <div><%= f.submit "Sign up", class: "btn btn-small btn-primary" %></div>
+
+  <div><%= f.submit "Agree to Terms & Sign up", class: "btn btn-small btn-primary" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

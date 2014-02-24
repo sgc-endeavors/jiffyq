@@ -5,6 +5,7 @@ ActiveAdmin.register Image do
 		column :s3_image_loc 
 		column :created_at
 		column :user
+		column :inactive
 		column :polls do |image|
 			image.polls.count
 		end

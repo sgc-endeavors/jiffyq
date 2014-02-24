@@ -15,6 +15,7 @@ ActiveAdmin.register Poll do
 		column :user_id
 		column :origin_poll
 		column :updated_at
+		column :inactive
 		default_actions
 	end
 
