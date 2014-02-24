@@ -9,12 +9,12 @@ Ometer::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: "users/registrations"}
   ActiveAdmin.routes(self)
 
   
 
-  resources :polls, :images, :complaints, :problems, :favorites
+  resources :polls, :images, :complaints, :problems, :favorites, :inactive_users
 
   get "/home" => "polls#home", as: "home"
 

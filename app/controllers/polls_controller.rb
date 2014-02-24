@@ -24,7 +24,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.where(user_id: current_user.id).order("id desc")
+    @polls = Poll.where(user_id: current_user.id).where("inactive is null").order("id desc")
     @favorites = Favorite.where(user_id: current_user.id).order("id desc")
   end
 
@@ -57,7 +57,7 @@ class PollsController < ApplicationController
 
   def show
     @response = params[:response].to_i
-    @poll = Poll.where(identifier: params[:id]).first
+    @poll = Poll.where(identifier: params[:id]).where("inactive is null").first
     @poll.count_page_views(@response, current_user)
   end
 

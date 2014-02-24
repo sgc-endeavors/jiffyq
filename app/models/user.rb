@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :terms, :acceptance => {:accept => true}
 
   # attr_accessible :title, :body
-  has_many :polls
-  has_many :images
-  has_many :favorites
+  has_many :polls#, :dependent => :destroy
+  has_many :images#, :dependent => :destroy
+  has_many :favorites, :dependent => :destroy
 end
