@@ -12,4 +12,19 @@ class User < ActiveRecord::Base
   has_many :polls#, :dependent => :destroy
   has_many :images#, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
+
+
+  def total_views
+    total_views = 0
+    for poll in self.polls
+      total_views += poll.page_views.to_i
+    end
+    return total_views
+  end
+
+
+
+
+
+
 end

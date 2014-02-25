@@ -14,18 +14,7 @@ describe "Poll#Index_page" do
 			visit polls_path
 		end
 
-		describe "Infectious Level" do
-			before(:each) do 
-				FactoryGirl.create(:poll, user_id: user.id, page_views: 5)
-				visit polls_path
-			end
-			it { should have_content("#{user.email}") }
-			it { should have_content("Questions: #{user.polls.count}") }
-			it { should have_content("Times Viewed: 8")}
-		end
-
 		
-
 		describe "Favorites Section" do
 
 			it "has a header called 'My Favorites' " do
@@ -105,5 +94,23 @@ describe "Poll#Index_page" do
 				end
 			end
 		end
+
+		describe "Popularity Ranking" do
+			before(:each) do 
+				FactoryGirl.create(:poll, user_id: user.id, page_views: 5)
+				FactoryGirl.create(:poll, page_views: 11)
+				FactoryGirl.create(:poll, page_views: 15)
+				visit polls_path
+			end
+			it { should have_content("Total JiffyQ Questions: #{user.polls.count}") }
+			it { should have_content("Total Page Views: 8")}
+			
+			it "assigns a rank based on the total views in comparison to others total views" do
+				should have_content("Popularity Rank: 3")
+			end
+		end
+
+
+
 	end
 end

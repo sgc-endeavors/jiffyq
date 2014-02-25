@@ -1,14 +1,17 @@
+
+
+
 <%if current_user%>
-	<%= current_user.email%> | 
-	Questions: <%= current_user.polls.count %> |
+	<h3>Popularity Ranking</h3>
+	<b>Popularity Rank: </b> <%=@rank%> |
+	<b>Total JiffyQ Questions:</b> <%= current_user.polls.count %> |
 	<% count = 0 %>
 	<% current_user.polls.each do |poll| %>
 		<%count += poll.page_views%>
 	<%end%>
-	Times Viewed: <%=count%> 
-
-<%end%>
-
+	<b>Total Page Views:</b> <%=count%>
+	<%end%>
+<hr />
 <%unless @favorites == [] %>
 	<h3>My Favorites</h3>
 

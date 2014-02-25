@@ -26,10 +26,21 @@ class PollsController < ApplicationController
   def index
     @polls = Poll.where(user_id: current_user.id).order("id desc")
     @favorites = Favorite.where(user_id: current_user.id).order("id desc")
+    users = User.all.sort_by { |user| user.total_views * -1 }
+
+    while @rank == nil
+      rank = 0
+      users.each do |user|
+        rank += 1
+        if current_user == user
+          @rank = rank
+          break
+        end
+      end
+    end
   end
 
   def new
-    
     if params[:image_id] != nil #|| params[:origin_id] != nil
       @new_poll = Poll.new
       @new_poll.image_id = params[:image_id]
