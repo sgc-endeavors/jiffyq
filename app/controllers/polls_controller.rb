@@ -3,17 +3,13 @@ class PollsController < ApplicationController
   before_filter :authenticate_user!, except: [ :home, :show, :about, :legal, :send_options ]
 
   def about
-
   end
  
 
- def legal
-
- end
+  def legal
+  end
 
   def home
-
-    render :home
   end
 
   def send_options

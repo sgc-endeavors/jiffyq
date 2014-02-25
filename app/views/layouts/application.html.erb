@@ -1,86 +1,96 @@
 <!DOCTYPE html>
-<html>
-<head>
+  <html>
+    <head>
+      <title>JiffyQ</title>
+      <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+      <%= stylesheet_link_tag    "application", :media => "all" %>
+      <%= javascript_include_tag "application" %>
+      <%= csrf_meta_tags %>
+      <%if @poll != nil %>
+        <meta property="og:title" content="<%=@poll.question%>"/>
+        <meta property="og:site_name" content="JiffyQ"/>
+        <meta property="og:url" content="www.jiffyq.com/polls/<%=@poll.identifier%>"/>
+        <meta property="og:description" content="Click image to answer.  JiffyQ...  helping people ask all things relevant and irrelevant since MMXIV."/>
+        <%if @poll.image%>
+          <meta property="og:image" content="<%=@poll.image.s3_image_loc%>"/>
+        <%else%>
+          <meta property="og:image" content="/the_bomb.png"/>
+        <%end%> 
+      <%end%>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <%= analytics_init if Rails.env.production? %>
+      <%= favicon_link_tag 'favicon.ico' %>
+    </head>
 
-  <title>JiffyQ</title>
-  
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  
+    <body>
+      <!-- this is for facebook share functionality-->
+      <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
-<%if @poll != nil %>
-  <meta property="og:title" content="<%=@poll.question%>"/>
-  <meta property="og:site_name" content="JiffyQ"/>
-  <meta property="og:url" content="www.jiffyq.com/polls/<%=@poll.identifier%>"/>
-<meta property="og:description" content="Click image to answer.  JiffyQ...  helping people ask all things relevant and irrelevant since MMXIV."/>
-  <%if @poll.image%>
-    <meta property="og:image" content="<%=@poll.image.s3_image_loc%>"/>
-  <%else%>
-    <meta property="og:image" content="/the_bomb.png"/>
-  <%end%> 
+    <br>
+    <div class="navbar navbar-fluid">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-th-list"></span>
+          </a>
+          <a tabindex=-1 href= <%=home_path%> class="brand"> 
+            <img style="width: 30px" src="/jiffypoll_logo.png"> 
+            JiffyQ
+          </a>
+        
+          <div class = "nav-collapse collapse">
+            <ul class="nav pull-right">   
+              <%if user_signed_in? %>
+                <li>
+                  <div>
+                    <%= link_to 'Edit Profile', edit_user_registration_path %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                  </div>
+                </li>
+                <br>
+                <li>
+                  <div>
+                    <%= link_to "My Qs/Faves", polls_path %>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <%= link_to 'New Question', new_image_path %>
+                  </div>
+                </li>
+                <br>
+                <%if current_user.is_admin?%>
+                  <li>
+                    <div>
+                    <%=link_to "Admin", admin_root_path%>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                <%end%> 
 
-<%end%>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-<%= analytics_init if Rails.env.production? %>
-<%= favicon_link_tag 'favicon.ico' %>
-</head>
-<body>
-  
-  <!-- this is for facebook share functionality-->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-<br>
-<div class="navbar navbar-fluid">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-th-list"></span>
-            </a>
-              <a tabindex=-1 href= <%=home_path(anchor: "1")%> class="brand"> <img style="width: 30px" src="/jiffypoll_logo.png"> JiffyQ</a>
-          
-            <div class = "nav-collapse collapse">
-              <ul class="nav pull-right">
-                 
-                <% if user_signed_in? %>
-
-                  <li><div><%= link_to 'Edit Profile', edit_user_registration_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Logout', destroy_user_session_path, method: :delete %></div></li>
-                  <br>
-                  <li><div><%= link_to "My Qs/Faves", polls_path %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'New Question', new_image_path %></div></li><br>
-                  
-                  <%if current_user.is_admin?%>
-                    <li><div>
-                      <%=link_to "Admin", admin_root_path%>
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                  <%end%>   
-                <% else %>
-                  <li><div>
-                    <%= link_to "New User?", new_user_registration_path %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to "Login", new_user_session_path %>
-                  </div></li>
-                  <br>
-                  <li><div>
-                <% end %>
-                  
-                <%= link_to "About", about_path(anchor: "about") %>
-                </div></li>
-              </ul>
-            </div>
+              <% else %>
+                <li>
+                  <div>
+                    <%= link_to "New User?", new_user_registration_path %>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <%= link_to "Login", new_user_session_path %>
+                  </div>
+                </li>
+                <br>
+                <li><div>
+              <% end %>
+                
+              <%= link_to "About", about_path(anchor: "about") %>
+              </div></li>
+            </ul>
           </div>
         </div>
       </div>
+    </div>
   
 	 <div class="container-fluid">
 		<p class="notice"><%= notice %></p>

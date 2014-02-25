@@ -1,8 +1,5 @@
 Ometer::Application.routes.draw do
   
-  get "favorites/create"
-
-  get "favorites/destroy"
 
   root :to => "polls#home"
   
