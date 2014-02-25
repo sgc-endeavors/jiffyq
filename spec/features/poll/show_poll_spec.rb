@@ -4,6 +4,18 @@ describe "Poll#Show_page" do
 	
 	subject{ page }
 
+	context "a poll was created and inactivated" do
+		before(:each) do
+			@inactivated_poll = FactoryGirl.create(:poll, question: "Is my poll inactive?", inactive: true, )
+		end
+		context "a visitor visits link to an inactivated poll" do
+			before(:each) { visit poll_path(@inactivated_poll) }
+			it "doesn't show a link to the inactive poll" do
+				should_not have_content("Is my poll inactive?")
+			end
+		end
+	end
+
 	context "the user is an author of a drafted poll and has signed in" do
 		let(:drafted_poll) { FactoryGirl.create(:poll) }
 		before(:each) { sign_in_as_existing_user(drafted_poll.user) }

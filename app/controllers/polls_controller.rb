@@ -24,7 +24,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.where(user_id: current_user.id).where("inactive is null").order("id desc")
+    @polls = Poll.where(user_id: current_user.id).order("id desc")
     @favorites = Favorite.where(user_id: current_user.id).order("id desc")
   end
 
