@@ -17,7 +17,7 @@ class PollsController < ApplicationController
   end
 
   def send_options
-    @poll = Poll.find(params[:poll_id])
+    @poll = Poll.where(identifier: params[:identifier]).first
     @poll.status = "sent"
     @poll.save! 
     render :send_options

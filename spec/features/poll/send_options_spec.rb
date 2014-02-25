@@ -9,7 +9,7 @@ describe "Poll#Send_Options_page" do
 	context "visitor has signed in" do
 		before(:each) do
 			sign_in_as_existing_user(poll_to_send.user)
-			visit send_options_path(poll_id: poll_to_send.id)
+			visit send_options_path(identifier: poll_to_send.identifier)
 		end
 
 		it { should have_link("Email") }

@@ -71,7 +71,7 @@
   </div><br>
 
 
-<%=link_to "Save & Send",  send_options_path(poll_id: @poll.id)%> &nbsp;&nbsp;|&nbsp;&nbsp;
+<%=link_to "Save & Send",  send_options_path(identifier: @poll.identifier)%> &nbsp;&nbsp;|&nbsp;&nbsp;
   
 <%=link_to "Edit",  edit_poll_path(@poll, anchor: "1")%> 
 <%end%>
@@ -92,7 +92,7 @@
   </div><br>
 
 
-	<%=link_to "Forward", send_options_path(poll_id: @poll.id)%> |
+	<%=link_to "Forward", send_options_path(identifier: @poll.identifier)%> |
   <%=link_to "Create Your Own",  new_image_path%> 
   <%if user_signed_in?%>
     <%if Favorite.where(poll_id: @poll.id).where(user_id: current_user.id).first == nil%>
