@@ -1,8 +1,5 @@
 
 
-<%=link_to "Zoes Schedule", "/Zoe_Schedule.pdf"%>
-
-
 <%if current_user%>
 	<% count = 0 %>
 	<% current_user.polls.each do |poll| %>
