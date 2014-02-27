@@ -6,6 +6,7 @@ class PollsController < ApplicationController
   end
 
   def home
+    render :home
   end
 
   def send_options
