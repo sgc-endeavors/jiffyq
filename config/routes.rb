@@ -19,7 +19,6 @@ Ometer::Application.routes.draw do
 
   get "/about" => "polls#about", as: "about"
 
-  get "/legal" => "polls#legal", as: "legal"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

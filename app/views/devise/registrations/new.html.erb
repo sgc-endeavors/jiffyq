@@ -14,10 +14,10 @@
   <%= f.password_field :password_confirmation %></div><br>
 
  
-  <%=link_to "Terms of Use ('Terms')", legal_path%><br><br>
+ <p><small> By clicking "Agree & Sign up", I agree to the <%=link_to "Terms of Use", "/Terms_of_Use.pdf"%> and <%=link_to "Privacy Policy", "/Privacy_Policy.pdf"%>.</small></p>
 
 
-  <div><%= f.submit "Agree to Terms & Sign up", class: "btn btn-small btn-primary" %></div>
+  <div><%= f.submit "Agree & Sign up", class: "btn btn-small btn-primary" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
